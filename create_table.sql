@@ -24,7 +24,8 @@ DROP TABLE IF EXISTS sub_category;
 CREATE TABLE sub_category (
     id SERIAL PRIMARY KEY,
     parent_id INT NOT NULL,
-    FOREIGN KEY (id, parent_id) REFERENCES category (id)
+    FOREIGN KEY (id) REFERENCES category (id),
+    FOREIGN KEY (parent_id) REFERENCES category (id)
 );
 
 DROP TABLE IF EXISTS character;
