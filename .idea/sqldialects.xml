@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/CreateTable.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/Modifying data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/create_table.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/dummy_data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/modifying_data.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/querying_data.sql" dialect="PostgreSQL" />
   </component>
 </project>

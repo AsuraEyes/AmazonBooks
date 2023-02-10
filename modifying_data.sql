@@ -1,0 +1,1 @@
+SET SCHEMA 'amazon_books';

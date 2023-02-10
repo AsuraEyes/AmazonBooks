@@ -24,8 +24,7 @@ DROP TABLE IF EXISTS sub_category;
 CREATE TABLE sub_category (
     id SERIAL PRIMARY KEY,
     parent_id INT NOT NULL,
-    FOREIGN KEY (id) REFERENCES category (id),
-    FOREIGN KEY (parent_id) REFERENCES category (id)
+    FOREIGN KEY (id, parent_id) REFERENCES category (id)
 );
 
 DROP TABLE IF EXISTS character;
@@ -55,11 +54,12 @@ CREATE TABLE customer (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR (100) NOT NULL,
     last_name VARCHAR (100) NOT NULL,
-    co_id INT NOT NULL,
+    email VARCHAR (255) NOT NULL,
     street_name VARCHAR (255) NOT NULL,
     street_number VARCHAR (255) NOT NULL,
     postal_code VARCHAR (50) NOT NULL,
     city VARCHAR (255) NOT NULL,
+    co_id INT NOT NULL,
     FOREIGN KEY (co_id) REFERENCES country (id)
 );
 
@@ -120,6 +120,17 @@ CREATE TABLE book_genre (
     FOREIGN KEY (g_id) REFERENCES genre (id)
 );
 
+DROP TABLE IF EXISTS book_character;
+CREATE TABLE book_character (
+    isbn_10 VARCHAR NOT NULL,
+    isbn_13 VARCHAR NOT NULL,
+    ch_id INT NOT NULL,
+    PRIMARY KEY (isbn_10, isbn_13, ch_id),
+    FOREIGN KEY (isbn_10) REFERENCES book (isbn_10),
+    FOREIGN KEY (isbn_13) REFERENCES book (isbn_13),
+    FOREIGN KEY (ch_id) REFERENCES character (id)
+);
+
 DROP TABLE IF EXISTS book_category;
 CREATE TABLE book_category (
     isbn_10 VARCHAR NOT NULL,
@@ -135,7 +146,11 @@ DROP TABLE IF EXISTS "order";
 CREATE TABLE "order" (
     id SERIAL PRIMARY KEY,
     description VARCHAR NOT NULL,
-    date DATE
+    c_id INT NOT NULL,
+    o_id INT NOT NULL,
+    total_price DECIMAL NOT NULL,
+    FOREIGN KEY (c_id) REFERENCES customer (id),
+    date TIMESTAMP DEFAULT current_timestamp
 );
 
 DROP TABLE IF EXISTS book_order;
@@ -144,7 +159,8 @@ CREATE TABLE book_order (
     isbn_13 VARCHAR NOT NULL,
     o_id INT NOT NULL,
     quantity INT NOT NULL,
-    price INT NOT NULL,
+    unit_price INT NOT NULL,
+    total_price INT NOT NULL,
     PRIMARY KEY (isbn_10, isbn_13, o_id),
     FOREIGN KEY (isbn_10) REFERENCES book (isbn_10),
     FOREIGN KEY (isbn_13) REFERENCES book (isbn_13),
@@ -159,9 +175,8 @@ CREATE TABLE amazon_order (
     o_id INT NOT NULL,
     total_price DECIMAL NOT NULL,
     PRIMARY KEY (ISBN_10, ISBN_13, c_id, o_id),
-    FOREIGN KEY (ISBN_10) REFERENCES book_order (ISBN_10),
-    FOREIGN KEY (ISBN_13) REFERENCES book_order (ISBN_13),
+    FOREIGN KEY (ISBN_10) REFERENCES book (ISBN_10),
+    FOREIGN KEY (ISBN_13) REFERENCES book (ISBN_13),
     FOREIGN KEY (c_id) REFERENCES customer (id),
-    FOREIGN KEY (o_id) REFERENCES book_order (o_id)
+    FOREIGN KEY (o_id) REFERENCES "order" (id)
 );
-
