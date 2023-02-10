@@ -1,0 +1,126 @@
+DROP SCHEMA IF EXISTS  amazon_books CASCADE ;
+CREATE SCHEMA amazon_books;
+SET SCHEMA 'amazon_books';
+
+DROP TABLE IF EXISTS language;
+CREATE TABLE language (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL
+);
+
+DROP TABLE IF EXISTS format;
+CREATE TABLE format (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL
+);
+
+DROP TABLE IF EXISTS category;
+CREATE TABLE category (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL
+);
+
+DROP TABLE IF EXISTS sub_category;
+CREATE TABLE sub_category (
+    id SERIAL PRIMARY KEY,
+    parent_id INT NOT NULL,
+    FOREIGN KEY (id) REFERENCES category (id),
+    FOREIGN KEY (parent_id) REFERENCES category (id)
+);
+
+DROP TABLE IF EXISTS character;
+CREATE TABLE character (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL,
+    ca_id INT NOT NULL,
+    FOREIGN KEY (ca_id) REFERENCES category (id)
+);
+
+DROP TABLE IF EXISTS genre;
+CREATE TABLE genre (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL,
+    ca_id INT NOT NULL,
+    FOREIGN KEY (ca_id) REFERENCES category (id)
+);
+
+DROP TABLE IF EXISTS country;
+CREATE TABLE country (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL
+);
+
+DROP TABLE IF EXISTS customer;
+CREATE TABLE customer (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR (100) NOT NULL,
+    last_name VARCHAR (100) NOT NULL,
+    co_id INT NOT NULL,
+    FOREIGN KEY (co_id) REFERENCES country (id)
+);
+
+DROP TABLE IF EXISTS publisher;
+CREATE TABLE publisher (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL,
+    picture BIGINT
+);
+
+DROP TABLE IF EXISTS author;
+CREATE TABLE author (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (100) NOT NULL,
+    picture BIGINT
+);
+
+DROP TABLE IF EXISTS book;
+CREATE TABLE book (
+    ISBN_10 INT NOT NULL UNIQUE,
+    ISBN_13 INT NOT NULL UNIQUE,
+    title VARCHAR (100) NOT NULL,
+    description VARCHAR NOT NULL,
+    pages INT NOT NULL,
+    dimensions VARCHAR (50),
+    price DECIMAL NOT NULL,
+    units INT NOT NULL,
+    p_id INT NOT NULL,
+    l_id INT NOT NULL,
+    ca_id INT NOT NULL,
+    f_id INT NOT NULL,
+    PRIMARY KEY (ISBN_10, ISBN_13),
+    FOREIGN KEY (p_id) REFERENCES publisher (id),
+    FOREIGN KEY (l_id) REFERENCES language (id),
+    FOREIGN KEY (ca_id) REFERENCES category (id),
+    FOREIGN KEY (f_id) REFERENCES format (id)
+);
+
+DROP TABLE IF EXISTS book_author;
+CREATE TABLE book_author (
+    a_id INT NOT NULL,
+    ISBN_10 INT NOT NULL,
+    ISBN_13 INT NOT NULL,
+    PRIMARY KEY (a_id, ISBN_10, ISBN_13),
+    FOREIGN KEY (a_id) REFERENCES author (id),
+    FOREIGN KEY (ISBN_10) REFERENCES book (ISBN_10),
+    FOREIGN KEY (ISBN_13) REFERENCES book (ISBN_13)
+);
+
+DROP TABLE IF EXISTS "order";
+CREATE TABLE "order" (
+    id SERIAL PRIMARY KEY,
+    description VARCHAR NOT NULL,
+    date DATE
+);
+
+DROP TABLE IF EXISTS amazon_order;
+CREATE TABLE amazon_order (
+    ISBN_10 INT NOT NULL,
+    ISBN_13 INT NOT NULL,
+    c_id INT NOT NULL,
+    o_id INT NOT NULL,
+    PRIMARY KEY (ISBN_10, ISBN_13, c_id, o_id),
+    FOREIGN KEY (ISBN_10) REFERENCES book (ISBN_10),
+    FOREIGN KEY (ISBN_13) REFERENCES book (ISBN_13),
+    FOREIGN KEY (c_id) REFERENCES customer (id),
+    FOREIGN KEY (o_id) REFERENCES "order" (id)
+)
