@@ -22,8 +22,9 @@ CREATE TABLE category (
 
 DROP TABLE IF EXISTS sub_category;
 CREATE TABLE sub_category (
-    id SERIAL PRIMARY KEY,
+    id INT NOT NULL,
     parent_id INT NOT NULL,
+    PRIMARY KEY (id, parent_id),
     FOREIGN KEY (id) REFERENCES category (id),
     FOREIGN KEY (parent_id) REFERENCES category (id)
 );
@@ -90,13 +91,22 @@ CREATE TABLE book (
     units INT NOT NULL,
     p_id INT NOT NULL,
     l_id INT NOT NULL,
-    ca_id INT NOT NULL,
     f_id INT NOT NULL,
     PRIMARY KEY (ISBN_10, ISBN_13),
     FOREIGN KEY (p_id) REFERENCES publisher (id),
     FOREIGN KEY (l_id) REFERENCES language (id),
-    FOREIGN KEY (ca_id) REFERENCES category (id),
     FOREIGN KEY (f_id) REFERENCES format (id)
+);
+
+DROP TABLE IF EXISTS book_category;
+CREATE TABLE book_category (
+    isbn_10 VARCHAR (10) NOT NULL,
+    isbn_13 VARCHAR (14) NOT NULL,
+    ca_id INT NOT NULL,
+    PRIMARY KEY (isbn_10, isbn_13, ca_id),
+    FOREIGN KEY (isbn_10) REFERENCES book (isbn_10),
+    FOREIGN KEY (isbn_13) REFERENCES book (isbn_13),
+    FOREIGN KEY (ca_id) REFERENCES category (id)
 );
 
 DROP TABLE IF EXISTS book_author;
@@ -130,17 +140,6 @@ CREATE TABLE book_character (
     FOREIGN KEY (isbn_10) REFERENCES book (isbn_10),
     FOREIGN KEY (isbn_13) REFERENCES book (isbn_13),
     FOREIGN KEY (ch_id) REFERENCES character (id)
-);
-
-DROP TABLE IF EXISTS book_category;
-CREATE TABLE book_category (
-    isbn_10 VARCHAR (10) NOT NULL,
-    isbn_13 VARCHAR (14) NOT NULL,
-    ca_id INT NOT NULL,
-    PRIMARY KEY (isbn_10, isbn_13, ca_id),
-    FOREIGN KEY (isbn_10) REFERENCES book (isbn_10),
-    FOREIGN KEY (isbn_13) REFERENCES book (isbn_13),
-    FOREIGN KEY (ca_id) REFERENCES category (id)
 );
 
 DROP TABLE IF EXISTS "order";
