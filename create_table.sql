@@ -69,7 +69,7 @@ DROP TABLE IF EXISTS publisher;
 CREATE TABLE publisher (
     id SERIAL PRIMARY KEY,
     name VARCHAR (100) NOT NULL,
-    picture BIGINT
+    picture BIGINT -- isn't it a link? maybe varchar
 );
 
 DROP TABLE IF EXISTS author;
