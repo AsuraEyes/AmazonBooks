@@ -24,9 +24,7 @@ CREATE TABLE category (
 DROP TABLE IF EXISTS character;
 CREATE TABLE character (
     id SERIAL PRIMARY KEY,
-    name VARCHAR (100) NOT NULL,
-    ca_id INT NOT NULL,
-    FOREIGN KEY (ca_id) REFERENCES category (id)
+    name VARCHAR (100) NOT NULL
 );
 
 DROP TABLE IF EXISTS genre;
