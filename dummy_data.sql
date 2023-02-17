@@ -49,7 +49,8 @@ VALUES ('Crime, Thrillers & Mystery', null),
        ('Alternative History', '23'),
        ('Hard Science Fiction', '30'),
        ('Myths & Legends', '31'),
-       ('Vehicles', '14');
+       ('Vehicles', '14'),
+       ('Space Opera', '23');
 
 INSERT INTO character(name)
 VALUES ('AIs'),
@@ -94,7 +95,7 @@ VALUES ('Max Brooks', ''),
        ('Elly Griffiths', ''),
        ('Sir Terry Pratchett', '');
 
-INSERT INTO book(isbn_10, isbn_13, title, description, pages, dimensions, prices, units, p_id, l_id, f_id)
+INSERT INTO book(isbn_10, isbn_13, title, description, pages, dimensions, price, units, p_id, l_id, f_id)
 VALUES ('1529409713', '978-1529409710', 'Ruth Galloway series',
         'Ruth and Nelson are working on a murder case in which Cathbad emerges as the prime suspect. Can they uncover the truth in time to save their friend?',
         '384', '16.2 x 3.6 x 23.6 cm', '17.36', '100', '4', '1', '1'),
@@ -128,7 +129,7 @@ VALUES ('1529409713', '978-1529409710', 'Ruth Galloway series',
 
 INSERT INTO book_category(isbn_10, isbn_13, ca_id)
 VALUES ('1529409713', '978-1529409710', '6'),
-       ('0857525085', '978-0857525086', '23'),
+       ('0857525085', '978-0857525086', '34'),
        ('8376804582', '979-8376804582', '25'),
        ('9780241250310', '978-0241250310', '32'),
        ('1398525685', '978-1398525689', '12'),
@@ -173,10 +174,4 @@ VALUES ('1529409713', '978-1529409710', '1'),
        ('1278943210', '978-1278943210', '8'),
        ('1378943210', '978-1378943210', '6'),
        ('2378943210', '978-2378943210', '5');
-
-INSERT INTO "order"(description, c_id, o_id, total_price)
-VALUES ('', '', '', '');
-
-INSERT INTO book_order(isbn_10, isbn_13, o_id, quantity, unit_price, total_price)
-VALUES ('', '', '', '', '', '');
 
