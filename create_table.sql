@@ -17,16 +17,8 @@ CREATE TABLE format (
 DROP TABLE IF EXISTS category;
 CREATE TABLE category (
     id SERIAL PRIMARY KEY,
-    name VARCHAR (50) NOT NULL
-);
-
-DROP TABLE IF EXISTS sub_category;
-CREATE TABLE sub_category (
-    id INT NOT NULL,
-    parent_id INT NOT NULL,
-    PRIMARY KEY (id, parent_id),
-    FOREIGN KEY (id) REFERENCES category (id),
-    FOREIGN KEY (parent_id) REFERENCES category (id)
+    name VARCHAR (50) NOT NULL,
+    parent_id INT
 );
 
 DROP TABLE IF EXISTS character;
@@ -167,16 +159,16 @@ CREATE TABLE book_order (
     FOREIGN KEY (o_id) REFERENCES "order" (id)
 );
 
--- DROP TABLE IF EXISTS amazon_order;
--- CREATE TABLE amazon_order (
---     isbn_10 VARCHAR (10) NOT NULL,
---     isbn_13 VARCHAR (14) NOT NULL,
---     c_id INT NOT NULL,
---     o_id INT NOT NULL,
---     total_price DECIMAL NOT NULL,
---     PRIMARY KEY (ISBN_10, ISBN_13, c_id, o_id),
---     FOREIGN KEY (ISBN_10) REFERENCES book (ISBN_10),
---     FOREIGN KEY (ISBN_13) REFERENCES book (ISBN_13),
---     FOREIGN KEY (c_id) REFERENCES customer (id),
---     FOREIGN KEY (o_id) REFERENCES "order" (id)
--- );
+/*DROP TABLE IF EXISTS amazon_order;
+CREATE TABLE amazon_order (
+    isbn_10 VARCHAR (10) NOT NULL,
+    isbn_13 VARCHAR (14) NOT NULL,
+    c_id INT NOT NULL,
+    o_id INT NOT NULL,
+    total_price DECIMAL NOT NULL,
+    PRIMARY KEY (ISBN_10, ISBN_13, c_id, o_id),
+    FOREIGN KEY (ISBN_10) REFERENCES book (ISBN_10),
+    FOREIGN KEY (ISBN_13) REFERENCES book (ISBN_13),
+    FOREIGN KEY (c_id) REFERENCES customer (id),
+    FOREIGN KEY (o_id) REFERENCES "order" (id)
+);*/
