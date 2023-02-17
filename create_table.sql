@@ -61,14 +61,14 @@ DROP TABLE IF EXISTS publisher;
 CREATE TABLE publisher (
     id SERIAL PRIMARY KEY,
     name VARCHAR (100) NOT NULL,
-    picture BIGINT
+    picture VARCHAR
 );
 
 DROP TABLE IF EXISTS author;
 CREATE TABLE author (
     id SERIAL PRIMARY KEY,
     name VARCHAR (100) NOT NULL,
-    picture BIGINT
+    picture VARCHAR
 );
 
 DROP TABLE IF EXISTS book;
