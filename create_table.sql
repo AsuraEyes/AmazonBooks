@@ -69,7 +69,7 @@ CREATE TABLE author (
 
 DROP TABLE IF EXISTS book;
 CREATE TABLE book (
-    isbn_10 VARCHAR (10) NOT NULL UNIQUE,
+    isbn_10 VARCHAR (13) NOT NULL UNIQUE,
     isbn_13 VARCHAR (14) NOT NULL UNIQUE,
     title VARCHAR (100) NOT NULL,
     description VARCHAR NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE book (
 
 DROP TABLE IF EXISTS book_category;
 CREATE TABLE book_category (
-    isbn_10 VARCHAR (10) NOT NULL,
+    isbn_10 VARCHAR (13) NOT NULL,
     isbn_13 VARCHAR (14) NOT NULL,
     ca_id INT NOT NULL,
     PRIMARY KEY (isbn_10, isbn_13, ca_id),
@@ -100,7 +100,7 @@ CREATE TABLE book_category (
 DROP TABLE IF EXISTS book_author;
 CREATE TABLE book_author (
     a_id INT NOT NULL,
-    isbn_10 VARCHAR (10) NOT NULL,
+    isbn_10 VARCHAR (13) NOT NULL,
     isbn_13 VARCHAR (14) NOT NULL,
     PRIMARY KEY (a_id, ISBN_10, ISBN_13),
     FOREIGN KEY (a_id) REFERENCES author (id),
@@ -110,7 +110,7 @@ CREATE TABLE book_author (
 
 DROP TABLE IF EXISTS book_genre;
 CREATE TABLE book_genre (
-    isbn_10 VARCHAR (10) NOT NULL,
+    isbn_10 VARCHAR (13) NOT NULL,
     isbn_13 VARCHAR (14) NOT NULL,
     g_id INT NOT NULL,
     PRIMARY KEY (isbn_10, isbn_13, g_id),
@@ -121,7 +121,7 @@ CREATE TABLE book_genre (
 
 DROP TABLE IF EXISTS book_character;
 CREATE TABLE book_character (
-    isbn_10 VARCHAR (10) NOT NULL,
+    isbn_10 VARCHAR (13) NOT NULL,
     isbn_13 VARCHAR (14) NOT NULL,
     ch_id INT NOT NULL,
     PRIMARY KEY (isbn_10, isbn_13, ch_id),
@@ -135,7 +135,6 @@ CREATE TABLE "order" (
     id SERIAL PRIMARY KEY,
     description VARCHAR NOT NULL,
     c_id INT NOT NULL,
-    o_id INT NOT NULL,
     total_price DECIMAL NOT NULL,
     FOREIGN KEY (c_id) REFERENCES customer (id),
     date TIMESTAMP DEFAULT current_timestamp
@@ -143,7 +142,7 @@ CREATE TABLE "order" (
 
 DROP TABLE IF EXISTS book_order;
 CREATE TABLE book_order (
-    isbn_10 VARCHAR (10) NOT NULL,
+    isbn_10 VARCHAR (13) NOT NULL,
     isbn_13 VARCHAR (14) NOT NULL,
     o_id INT NOT NULL,
     quantity INT NOT NULL,
