@@ -32,9 +32,7 @@ CREATE TABLE character (
 DROP TABLE IF EXISTS genre;
 CREATE TABLE genre (
     id SERIAL PRIMARY KEY,
-    name VARCHAR (20) NOT NULL,
-    ca_id INT NOT NULL,
-    FOREIGN KEY (ca_id) REFERENCES category (id)
+    name VARCHAR (20) NOT NULL
 );
 
 DROP TABLE IF EXISTS country;
