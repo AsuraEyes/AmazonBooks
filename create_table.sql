@@ -153,17 +153,3 @@ CREATE TABLE book_order (
     FOREIGN KEY (isbn_13) REFERENCES book (isbn_13),
     FOREIGN KEY (o_id) REFERENCES "order" (id)
 );
-
-/*DROP TABLE IF EXISTS amazon_order;
-CREATE TABLE amazon_order (
-    isbn_10 VARCHAR (10) NOT NULL,
-    isbn_13 VARCHAR (14) NOT NULL,
-    c_id INT NOT NULL,
-    o_id INT NOT NULL,
-    total_price DECIMAL NOT NULL,
-    PRIMARY KEY (ISBN_10, ISBN_13, c_id, o_id),
-    FOREIGN KEY (ISBN_10) REFERENCES book (ISBN_10),
-    FOREIGN KEY (ISBN_13) REFERENCES book (ISBN_13),
-    FOREIGN KEY (c_id) REFERENCES customer (id),
-    FOREIGN KEY (o_id) REFERENCES "order" (id)
-);*/

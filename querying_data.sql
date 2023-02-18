@@ -101,12 +101,10 @@ FROM book_character
 WHERE category.name = 'Science Fiction';
 
 -- 14. (Optional) Number of books in each category
-/*SELECT c2.name
-FROM character c
-    JOIN book_character bc ON c.id = bc.ch_id
-    JOIN book_genre bg ON bc.isbn_10 = bg.isbn_10 AND bc.isbn_13 = bg.isbn_13
-    JOIN genre g ON bg.g_id = g.id
-    JOIN book b ON bc.isbn_10 = b.isbn_10 AND bc.isbn_13 = b.isbn_13
-    JOIN book_category bc2 ON b.isbn_10 = bc2.isbn_10 AND b.isbn_13 = bc2.isbn_13
-    JOIN category c2 ON bc2.ca_id = c2.id
-WHERE c2.name = 'Science Fiction';*/
+SELECT c.name AS category, COUNT(b.isbn_10) AS book_count
+FROM category c
+    LEFT JOIN book_category bc ON c.id = bc.ca_id
+    LEFT JOIN book b ON bc.isbn_10 = b.isbn_10 AND bc.isbn_13 = b.isbn_13
+GROUP BY c.name
+ORDER BY book_count DESC;
+

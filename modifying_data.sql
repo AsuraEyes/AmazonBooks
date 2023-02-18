@@ -51,4 +51,4 @@ DECLARE
 BEGIN
     UPDATE book SET units = units - bo1_q  WHERE isbn_10 = bo1_isbn;
     UPDATE book SET units = units - bo2_q  WHERE isbn_10 = bo2_isbn;
-END$$;
+END $$;
