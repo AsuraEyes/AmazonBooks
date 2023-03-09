@@ -107,4 +107,3 @@ FROM category c
     LEFT JOIN book b ON bc.isbn_10 = b.isbn_10 AND bc.isbn_13 = b.isbn_13
 GROUP BY c.name
 ORDER BY book_count DESC;
-
