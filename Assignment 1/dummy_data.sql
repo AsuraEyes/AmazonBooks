@@ -53,15 +53,15 @@ VALUES ('Crime, Thrillers & Mystery', null),
        ('Vehicles', '14'),
        ('Space Opera', '23');
 
-INSERT INTO character(name)
-VALUES ('AIs'),
-       ('Aliens'),
-       ('Clones'),
-       ('Corporations'),
-       ('Mutants'),
-       ('Pirates'),
-       ('Psychics'),
-       ('Robots & Androids');
+INSERT INTO character(name, ca_id)
+VALUES ('AIs', 23),
+       ('Aliens', 23),
+       ('Clones', 23),
+       ('Corporations', 3),
+       ('Mutants', 3),
+       ('Pirates', 3),
+       ('Psychics', 21),
+       ('Robots & Androids', 23);
 
 INSERT INTO genre(name)
 VALUES ('Horror'),
