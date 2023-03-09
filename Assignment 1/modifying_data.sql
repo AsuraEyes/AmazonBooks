@@ -7,8 +7,6 @@ VALUES ('Book purchase', 2, 35);
 INSERT INTO book_order (isbn_10, isbn_13, o_id, quantity, unit_price, total_price)
 VALUES ('1378943210', '978-1378943210', 1, 1, 35, 35);
 
-UPDATE book SET units = units - 1  WHERE isbn_10 = '1378943210';
-
 -- 2. Change the address of a customer
 UPDATE customer
 SET street_name = 'New Street Name', street_number = 'New Street Number'
@@ -41,14 +39,3 @@ VALUES ('9876543210', '978-9876543210', 2, 3, 25, 75);
 
 INSERT INTO book_order (isbn_10, isbn_13, o_id, quantity, unit_price, total_price)
 VALUES ('1278943210', '978-1278943210', 2, 2, 17, 34);
-
-DO $$
-DECLARE
-    bo1_isbn VARCHAR := '9876543210';
-    bo1_q INTEGER := 3;
-    bo2_isbn VARCHAR := '1278943210';
-    bo2_q INTEGER := 2;
-BEGIN
-    UPDATE book SET units = units - bo1_q  WHERE isbn_10 = bo1_isbn;
-    UPDATE book SET units = units - bo2_q  WHERE isbn_10 = bo2_isbn;
-END $$;

@@ -18,13 +18,16 @@ DROP TABLE IF EXISTS category;
 CREATE TABLE category (
     id SERIAL PRIMARY KEY,
     name VARCHAR (50) NOT NULL,
-    parent_id INT
+    parent_id INT,
+    FOREIGN KEY (parent_id) REFERENCES category (id)
 );
 
 DROP TABLE IF EXISTS character;
 CREATE TABLE character (
     id SERIAL PRIMARY KEY,
-    name VARCHAR (100) NOT NULL
+    name VARCHAR (100) NOT NULL,
+    ca_id INT NOT NULL,
+    FOREIGN KEY (ca_id) REFERENCES category (id)
 );
 
 DROP TABLE IF EXISTS genre;
@@ -153,3 +156,18 @@ CREATE TABLE book_order (
     FOREIGN KEY (isbn_13) REFERENCES book (isbn_13),
     FOREIGN KEY (o_id) REFERENCES "order" (id)
 );
+
+CREATE OR REPLACE FUNCTION decrease_book_units()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE book
+    SET units = units - NEW.quantity
+    WHERE isbn_10 = NEW.isbn_10 AND isbn_13 = NEW.isbn_13;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER decrease_book_units_trigger
+AFTER INSERT ON book_order
+FOR EACH ROW
+EXECUTE FUNCTION decrease_book_units();
