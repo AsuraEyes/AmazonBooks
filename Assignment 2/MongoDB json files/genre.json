@@ -1,0 +1,24 @@
+{
+    "_id" : NumberInt(1),
+    "name" : "Horror"
+}
+{
+    "_id" : NumberInt(2),
+    "name" : "Humour"
+}
+{
+    "_id" : NumberInt(3),
+    "name" : "Mystery"
+}
+{
+    "_id" : NumberInt(4),
+    "name" : "Non-Romantic"
+}
+{
+    "_id" : NumberInt(5),
+    "name" : "Romantic"
+}
+{
+    "_id" : NumberInt(6),
+    "name" : "Thriller"
+}

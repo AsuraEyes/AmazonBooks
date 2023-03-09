@@ -1,0 +1,170 @@
+{
+    "_id" : NumberInt(1),
+    "name" : "Crime, Thrillers & Mystery",
+    "parent_id" : null
+}
+{
+    "_id" : NumberInt(2),
+    "name" : "Children's' Books",
+    "parent_id" : null
+}
+{
+    "_id" : NumberInt(3),
+    "name" : "Fiction",
+    "parent_id" : null
+}
+{
+    "_id" : NumberInt(4),
+    "name" : "History",
+    "parent_id" : null
+}
+{
+    "_id" : NumberInt(5),
+    "name" : "Biography",
+    "parent_id" : null
+}
+{
+    "_id" : NumberInt(6),
+    "name" : "Thrillers",
+    "parent_id" : NumberInt(1)
+}
+{
+    "_id" : NumberInt(7),
+    "name" : "British Detectives",
+    "parent_id" : NumberInt(1)
+}
+{
+    "_id" : NumberInt(8),
+    "name" : "Mystery",
+    "parent_id" : NumberInt(1)
+}
+{
+    "_id" : NumberInt(9),
+    "name" : "Literature&Fiction",
+    "parent_id" : NumberInt(2)
+}
+{
+    "_id" : NumberInt(10),
+    "name" : "Early Learning",
+    "parent_id" : NumberInt(2)
+}
+{
+    "_id" : NumberInt(11),
+    "name" : "Science, Nature & How it works",
+    "parent_id" : NumberInt(2)
+}
+{
+    "_id" : NumberInt(12),
+    "name" : "Crime, Thrillers & Mystery",
+    "parent_id" : NumberInt(3)
+}
+{
+    "_id" : NumberInt(13),
+    "name" : "Romance",
+    "parent_id" : NumberInt(3)
+}
+{
+    "_id" : NumberInt(14),
+    "name" : "Literary Fiction",
+    "parent_id" : NumberInt(3)
+}
+{
+    "_id" : NumberInt(15),
+    "name" : "Military History",
+    "parent_id" : NumberInt(4)
+}
+{
+    "_id" : NumberInt(16),
+    "name" : "Historical Biographies",
+    "parent_id" : NumberInt(4)
+}
+{
+    "_id" : NumberInt(17),
+    "name" : "Ancient History & Civilisation",
+    "parent_id" : NumberInt(4)
+}
+{
+    "_id" : NumberInt(18),
+    "name" : "Historical",
+    "parent_id" : NumberInt(5)
+}
+{
+    "_id" : NumberInt(19),
+    "name" : "Film, Television & Music",
+    "parent_id" : NumberInt(5)
+}
+{
+    "_id" : NumberInt(20),
+    "name" : "Music",
+    "parent_id" : NumberInt(5)
+}
+{
+    "_id" : NumberInt(21),
+    "name" : "Science Fiction & Fantasy",
+    "parent_id" : null
+}
+{
+    "_id" : NumberInt(22),
+    "name" : "Fantasy",
+    "parent_id" : NumberInt(21)
+}
+{
+    "_id" : NumberInt(23),
+    "name" : "Science Fiction",
+    "parent_id" : NumberInt(21)
+}
+{
+    "_id" : NumberInt(24),
+    "name" : "Epic",
+    "parent_id" : NumberInt(22)
+}
+{
+    "_id" : NumberInt(25),
+    "name" : "Sword & Sorcery",
+    "parent_id" : NumberInt(22)
+}
+{
+    "_id" : NumberInt(26),
+    "name" : "Fairy Tales",
+    "parent_id" : NumberInt(22)
+}
+{
+    "_id" : NumberInt(27),
+    "name" : "Alternative History",
+    "parent_id" : NumberInt(23)
+}
+{
+    "_id" : NumberInt(28),
+    "name" : "Urban",
+    "parent_id" : NumberInt(23)
+}
+{
+    "_id" : NumberInt(29),
+    "name" : "Post-Apocalyptic",
+    "parent_id" : NumberInt(23)
+}
+{
+    "_id" : NumberInt(30),
+    "name" : "Alternative History",
+    "parent_id" : NumberInt(23)
+}
+{
+    "_id" : NumberInt(31),
+    "name" : "Hard Science Fiction",
+    "parent_id" : NumberInt(30)
+}
+{
+    "_id" : NumberInt(32),
+    "name" : "Myths & Legends",
+    "parent_id" : NumberInt(31)
+}
+{
+    "_id" : NumberInt(33),
+    "name" : "Vehicles",
+    "parent_id" : NumberInt(14)
+}
+{
+    "_id" : NumberInt(34),
+    "name" : "Space Opera",
+    "parent_id" : NumberInt(23)
+}

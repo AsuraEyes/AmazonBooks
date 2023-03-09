@@ -1,0 +1,20 @@
+{
+    "_id" : NumberInt(1),
+    "name" : "Max Brooks",
+    "picture" : ""
+}
+{
+    "_id" : NumberInt(2),
+    "name" : "Rupert Farley",
+    "picture" : ""
+}
+{
+    "_id" : NumberInt(3),
+    "name" : "Elly Griffiths",
+    "picture" : ""
+}
+{
+    "_id" : NumberInt(4),
+    "name" : "Sir Terry Pratchett",
+    "picture" : ""
+}

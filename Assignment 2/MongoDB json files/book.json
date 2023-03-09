@@ -1,0 +1,240 @@
+{
+    "_id" : {
+        "isbn_10" : "1529409713",
+        "isbn_13" : "978-1529409710"
+    },
+    "title" : "Ruth Galloway series",
+    "description" : "Ruth and Nelson are working on a murder case in which Cathbad emerges as the prime suspect. Can they uncover the truth in time to save their friend?",
+    "pages" : NumberInt(384),
+    "dimensions" : "16.2 x 3.6 x 23.6 cm",
+    "price" : NumberLong(17),
+    "units" : NumberInt(100),
+    "format" : [
+        NumberInt(1)
+    ],
+    "language" : [
+        NumberInt(1)
+    ],
+    "publisher" : [
+        NumberInt(4)
+    ],
+    "author" : [
+        NumberInt(3)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "0857525085",
+        "isbn_13" : "978-0857525086"
+    },
+    "title" : "Going Postal: (Discworld Novel 33) (Discworld Novels)",
+    "description" : "His world, increasingly subtle and thoughtful, has become as allegorical and satirical as a painting by Bosch ... Pratchett's joy in his creations, in jokes, puns, the idea of letters and language itself makes GOING POSTAL one of the best expressions of his unstoppable flow of comic invention.' ― The Times Published On: 2004-10-30",
+    "pages" : NumberInt(496),
+    "dimensions" : "13.46 x 4.06 x 20.57 cm",
+    "price" : NumberLong(12),
+    "units" : NumberInt(10),
+    "format" : [
+        NumberInt(3)
+    ],
+    "language" : [
+        NumberInt(1)
+    ],
+    "publisher" : [
+        NumberInt(1)
+    ],
+    "author" : [
+        NumberInt(3)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "8376804582",
+        "isbn_13" : "979-8376804582"
+    },
+    "title" : "Torith: A LitRPG Adventure (System Universe)",
+    "description" : "Perfect",
+    "pages" : NumberInt(462),
+    "dimensions" : "15.24 x 3.43 x 22.86 cm",
+    "price" : NumberLong(28),
+    "units" : NumberInt(16),
+    "format" : [
+        NumberInt(1)
+    ],
+    "language" : [
+        NumberInt(5)
+    ],
+    "publisher" : [
+        NumberInt(5)
+    ],
+    "author" : [
+        NumberInt(3)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "9780241250310",
+        "isbn_13" : "978-0241250310"
+    },
+    "title" : "The Tank Book: The Definitive Visual History of Armoured Vehicles",
+    "description" : "The best book",
+    "pages" : NumberInt(999),
+    "dimensions" : "26 x 2.2 x 30.9 cm",
+    "price" : NumberLong(35),
+    "units" : NumberInt(2),
+    "format" : [
+        NumberInt(1)
+    ],
+    "language" : [
+        NumberInt(4)
+    ],
+    "publisher" : [
+        NumberInt(2)
+    ],
+    "author" : [
+        NumberInt(2)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "1398525685",
+        "isbn_13" : "978-1398525689"
+    },
+    "title" : "IceBreaker",
+    "description" : "The tiktok sensation",
+    "pages" : NumberInt(120),
+    "dimensions" : "13 x 2.65 x 19.8 cm",
+    "price" : NumberLong(20),
+    "units" : NumberInt(50),
+    "format" : [
+        NumberInt(1)
+    ],
+    "language" : [
+        NumberInt(3)
+    ],
+    "publisher" : [
+        NumberInt(5)
+    ],
+    "author" : [
+        NumberInt(2)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "9876543210",
+        "isbn_13" : "978-9876543210"
+    },
+    "title" : "Harry Potter",
+    "description" : "good stuff",
+    "pages" : NumberInt(500),
+    "dimensions" : "13 x 2.65 x 19.8 cm",
+    "price" : NumberLong(25),
+    "units" : NumberInt(50),
+    "format" : [
+        NumberInt(2)
+    ],
+    "language" : [
+        NumberInt(1)
+    ],
+    "publisher" : [
+        NumberInt(4)
+    ],
+    "author" : [
+        NumberInt(2)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "1578943210",
+        "isbn_13" : "978-1578943210"
+    },
+    "title" : "Lord of the bracelet",
+    "description" : "elves and dwarves",
+    "pages" : NumberInt(700),
+    "dimensions" : "13 x 2.65 x 19.8 cm",
+    "price" : NumberLong(35),
+    "units" : NumberInt(15),
+    "format" : [
+        NumberInt(2)
+    ],
+    "language" : [
+        NumberInt(3)
+    ],
+    "publisher" : [
+        NumberInt(2)
+    ],
+    "author" : [
+        NumberInt(1)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "1278943210",
+        "isbn_13" : "978-1278943210"
+    },
+    "title" : "Garbage Man",
+    "description" : "superhero stuff",
+    "pages" : NumberInt(350),
+    "dimensions" : "13 x 2.65 x 19.8 cm",
+    "price" : NumberLong(17),
+    "units" : NumberInt(120),
+    "format" : [
+        NumberInt(1)
+    ],
+    "language" : [
+        NumberInt(1)
+    ],
+    "publisher" : [
+        NumberInt(1)
+    ],
+    "author" : [
+        NumberInt(1)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "1378943210",
+        "isbn_13" : "978-1378943210"
+    },
+    "title" : "Them witches",
+    "description" : "spooky",
+    "pages" : NumberInt(200),
+    "dimensions" : "13 x 2.65 x 19.8 cm",
+    "price" : NumberLong(35),
+    "units" : NumberInt(15),
+    "format" : [
+        NumberInt(1)
+    ],
+    "language" : [
+        NumberInt(2)
+    ],
+    "publisher" : [
+        NumberInt(1)
+    ],
+    "author" : [
+        NumberInt(4)
+    ]
+}
+{
+    "_id" : {
+        "isbn_10" : "2378943210",
+        "isbn_13" : "978-2378943210"
+    },
+    "title" : "Boss killer",
+    "description" : "crime, mafia",
+    "pages" : NumberInt(201),
+    "dimensions" : "13 x 2.65 x 19.8 cm",
+    "price" : NumberLong(19),
+    "units" : NumberInt(22),
+    "format" : [
+        NumberInt(1)
+    ],
+    "language" : [
+        NumberInt(1)
+    ],
+    "publisher" : [
+        NumberInt(5)
+    ],
+    "author" : [
+        NumberInt(4)
+    ]
+}

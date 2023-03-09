@@ -1,0 +1,40 @@
+{
+    "_id" : NumberInt(1),
+    "name" : "AIs",
+    "ca_id" : NumberInt(23)
+}
+{
+    "_id" : NumberInt(2),
+    "name" : "Aliens",
+    "ca_id" : NumberInt(23)
+}
+{
+    "_id" : NumberInt(3),
+    "name" : "Clones",
+    "ca_id" : NumberInt(23)
+}
+{
+    "_id" : NumberInt(4),
+    "name" : "Corporations",
+    "ca_id" : NumberInt(3)
+}
+{
+    "_id" : NumberInt(5),
+    "name" : "Mutants",
+    "ca_id" : NumberInt(3)
+}
+{
+    "_id" : NumberInt(6),
+    "name" : "Pirates",
+    "ca_id" : NumberInt(3)
+}
+{
+    "_id" : NumberInt(7),
+    "name" : "Psychics",
+    "ca_id" : NumberInt(21)
+}
+{
+    "_id" : NumberInt(8),
+    "name" : "Robots & Androids",
+    "ca_id" : NumberInt(23)
+}
