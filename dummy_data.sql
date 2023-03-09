@@ -16,6 +16,7 @@ VALUES ('Hardcover'),
 
 
 
+
 INSERT INTO category(name, parent_id)
 VALUES ('Crime, Thrillers & Mystery', null),
        ('Children''s'' Books', null),
