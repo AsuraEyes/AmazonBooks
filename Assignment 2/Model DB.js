@@ -252,41 +252,6 @@ db.categories.insertMany([
     }
 ])
 
-categories_ids = {
-    "CB": db.categories.findOne({ name: "Children's book" })._id,
-    "FI": db.categories.findOne({ name: "Fiction" })._id,
-    "HS": db.categories.findOne({ name: "History" })._id,
-    "BI": db.categories.findOne({ name: "Biography" })._id,
-    "TH": db.categories.findOne({ name: "Thrillers" })._id,
-    "BD": db.categories.findOne({ name: "British Detectives" })._id,
-    "MY": db.categories.findOne({ name: "Mystery" })._id,
-    "LAF": db.categories.findOne({ name: "Literature & Fiction" })._id,
-    "EL": db.categories.findOne({ name: "Early Learning" })._id,
-    "SNH": db.categories.findOne({ name: "Science, Nature & How it works" })._id,
-    "CTM": db.categories.findOne({ name: "Crime Thrillers & Mystery" })._id,
-    "RO": db.categories.findOne({ name: "Romance" })._id,
-    "LF": db.categories.findOne({ name: "Literary Fiction" })._id,
-    "MH": db.categories.findOne({ name: "Military History" })._id,
-    "HB": db.categories.findOne({ name: "Historical Biographies" })._id,
-    "AHC": db.categories.findOne({ name: "Ancient History & Civilisation" })._id,
-    "HI": db.categories.findOne({ name: "Historical" })._id,
-    "FTM": db.categories.findOne({ name: "Film, Television & Music" })._id,
-    "MU": db.categories.findOne({ name: "Music" })._id,
-    "SFF": db.categories.findOne({ name: "Science Fiction & Fantasy" })._id,
-    "FA": db.categories.findOne({ name: "Fantasy" })._id,
-    "SF": db.categories.findOne({ name: "Science Fiction" })._id,
-    "EP": db.categories.findOne({ name: "Epic" })._id,
-    "SS": db.categories.findOne({ name: "Sword & Sorcery" })._id,
-    "FT": db.categories.findOne({ name: "Fairy Tales" })._id,
-    "AH": db.categories.findOne({ name: "Alternative History" })._id,
-    "UR": db.categories.findOne({ name: "Urban" })._id,
-    "PA": db.categories.findOne({ name: "Post-Apocalyptic" })._id,
-    "HSF": db.categories.findOne({ name: "Hard Science Fiction" })._id,
-    "ML": db.categories.findOne({ name: "Myths & Legends" })._id,
-    "VE": db.categories.findOne({ name: "Vehicles" })._id,
-    "SO": db.categories.findOne({ name: "Soap Opera" })._id
-}
-
 db.categories.update({ _id: categories_ids.TH }, { $push: { parentCategoryId: categories_ids.CTM } })
 db.categories.update({ _id: categories_ids.MY }, { $push: { parentCategoryId: categories_ids.CTM } })
 db.categories.update({ _id: categories_ids.BD }, { $push: { parentCategoryId: categories_ids.CTM } })
@@ -340,7 +305,7 @@ db.characters.insertMany([
     {
         name: "Robots & Androids"
     }
-]);
+])
 
 characters_ids = {
     "AI": db.characters.findOne({ name: "AIs" })._id,
@@ -413,8 +378,8 @@ db.customers.insertMany([
         email: "goodtobegood@mmm.ok",
         street_name: "Vroomvroom",
         street_number: "1234556",
-        postal_code: "Munich",
-        city: "250"
+        postal_code: "250",
+        city: "Munich"
     }
 ])
 

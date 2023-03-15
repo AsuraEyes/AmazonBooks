@@ -42,13 +42,13 @@ db.createCollection("books", {
                 title: {
                     bsonType: "string"
                 },
-                dimensions: {
+                description: {
                     bsonType: "string"
                 },
                 pages: {
                     bsonType: "int"
                 },
-                description: {
+                dimensions: {
                     bsonType: "string"
                 },
                 price: {
@@ -58,11 +58,10 @@ db.createCollection("books", {
                     bsonType: "int"
                 },
                 languages: {
-                    bsonType: "array",
-                    uniqueItems: true,
-                    items: {
-                        bsonType: "objectId"
-                    }
+                    bsonType: "objectId"
+                },
+                formats: {
+                    bsonType: "objectId"
                 },
                 authors: {
                     bsonType: "array",
@@ -71,7 +70,21 @@ db.createCollection("books", {
                         bsonType: "objectId"
                     }
                 },
+                publishers: {
+                    bsonType: "array",
+                    uniqueItems: true,
+                    items: {
+                        bsonType: "objectId"
+                    }
+                },
                 genres: {
+                    bsonType: "array",
+                    uniqueItems: true,
+                    items: {
+                        bsonType: "objectId"
+                    }
+                },
+                categories: {
                     bsonType: "array",
                     uniqueItems: true,
                     items: {
@@ -107,6 +120,100 @@ db.createCollection("categories", {
     }
 })
 
+db.createCollection("characters", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name", "category"],
+            properties: {
+                name: {
+                    bsonType: "string",
+                },
+                category: {
+                    bsonType: "objectId"
+                }
+            }
+        }
+    }
+})
+
+db.createCollection("countries", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name"],
+            properties: {
+                name: {
+                    bsonType: "string"
+                }
+            }
+        }
+    }
+})
+
+db.createCollection("customers", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["first_name", "last_name", "email", "street_name", "street_number", "postal_code", "city"],
+            properties: {
+                first_name: {
+                    bsonType: "string"
+                },
+                last_name: {
+                    bsonType: "string"
+                },
+                email: {
+                    bsonType: "string"
+                },
+                street_name: {
+                    bsonType: "string"
+                },
+                street_number: {
+                    bsonType: "string"
+                },
+                postal_code: {
+                    bsonType: "string"
+                },
+                city: {
+                    bsonType: "string"
+                },
+                country: {
+                    bsonType: "objectId"
+                }
+            }
+        }
+    }
+})
+
+db.createCollection("formats", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name"],
+            properties: {
+                name: {
+                    bsonType: "string"
+                }
+            }
+        }
+    }
+})
+
+db.createCollection("genres", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name"],
+            properties: {
+                name: {
+                    bsonType: "string"
+                }
+            }
+        }
+    }
+})
+
 db.createCollection("languages", {
     validator: {
         $jsonSchema: {
@@ -114,6 +221,50 @@ db.createCollection("languages", {
             required: ["name"],
             properties: {
                 name: {
+                    bsonType: "string"
+                }
+            }
+        }
+    }
+})
+
+db.createCollection("orders", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["description", "total_price", "date"],
+            properties: {
+                description: {
+                    bsonType: "string"
+                },
+                total_price: {
+                    bsonType: "string"
+                },
+                timestamp: {
+                    bsonType: "timestamp"
+                },
+                books: {
+                    bsonType: "array",
+                    uniqueItems: true,
+                    items: {
+                        bsonType: "objectId"
+                    }
+                }
+            }
+        }
+    }
+})
+
+db.createCollection("publishers", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name"],
+            properties: {
+                name: {
+                    bsonType: "string"
+                },
+                picture: {
                     bsonType: "string"
                 }
             }
