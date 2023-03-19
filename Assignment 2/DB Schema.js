@@ -6,6 +6,7 @@ db.countries.drop({})
 db.customers.drop({})
 db.formats.drop({})
 db.genres.drop({})
+db.items.drop({})
 db.languages.drop({})
 db.orders.drop({})
 db.publishers.drop({})
@@ -57,11 +58,11 @@ db.createCollection("books", {
                 units: {
                     bsonType: "int"
                 },
-                languages: {
-                    bsonType: "objectId"
-                },
-                formats: {
-                    bsonType: "objectId"
+                language: {
+                        bsonType: "objectId"
+                    },
+                format: {
+                        bsonType: "objectId"
                 },
                 authors: {
                     bsonType: "array",
@@ -112,9 +113,9 @@ db.createCollection("categories", {
                 name: {
                     bsonType: "string",
                 },
-                parentCategoryId: {
+                parentId: {
                     bsonType: "objectId"
-                }
+                },
             }
         }
     }
@@ -214,6 +215,32 @@ db.createCollection("genres", {
     }
 })
 
+db.createCollection("items", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["book", "order", "quantity", "unit_price", "total_price"],
+            properties: {
+                book: {
+                    bsonType: "objectId"
+                },
+                order: {
+                    bsonType: "objectId"
+                },
+                quantity: {
+                    bsonType: "int"
+                },
+                unit_price: {
+                    bsonType: "double"
+                },
+                total_price: {
+                    bsonType: "double"
+                }
+            }
+        }
+    }
+})
+
 db.createCollection("languages", {
     validator: {
         $jsonSchema: {
@@ -238,17 +265,10 @@ db.createCollection("orders", {
                     bsonType: "string"
                 },
                 total_price: {
-                    bsonType: "string"
+                    bsonType: "double"
                 },
-                timestamp: {
+                date: {
                     bsonType: "timestamp"
-                },
-                books: {
-                    bsonType: "array",
-                    uniqueItems: true,
-                    items: {
-                        bsonType: "objectId"
-                    }
                 }
             }
         }

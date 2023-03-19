@@ -29,6 +29,60 @@ db.authors.insertMany([
     }
 ])
 
+db.formats.insertMany([
+    {
+        name: "Hardcover"
+    },
+    {
+        name: "Paperback"
+    },
+    {
+        name: "Audiobooks"
+    },
+    {
+        name: "Kindle Books"
+    },
+    {
+        name: "Spiral-bound"
+    }
+
+])
+
+formats_ids = {
+    "HC": db.formats.findOne({ name: "Hardcover" })._id,
+    "PB": db.formats.findOne({ name: "Paperback" })._id,
+    "AB": db.formats.findOne({ name: "Audiobooks" })._id,
+    "KB": db.formats.findOne({ name: "Kindle Books" })._id,
+    "SP": db.formats.findOne({ name: "Spiral-bound" })._id
+}
+
+db.languages.insertMany([
+    {
+        name: "English"
+    },
+    {
+        name: "French"
+    },
+    {
+        name: "German"
+    },
+    {
+        name: "Italian"
+    },
+    {
+        name: "Spanish"
+    }
+
+])
+
+languages_ids = {
+    "EN": db.languages.findOne({ name: "English" })._id,
+    "FR": db.languages.findOne({ name: "French" })._id,
+    "DU": db.languages.findOne({ name: "German" })._id,
+    "IT": db.languages.findOne({ name: "Italian" })._id,
+    "SP": db.languages.findOne({ name: "Spanish" })._id
+}
+
 authors_ids = {
     "MB": db.authors.findOne({ name: "Max Brooks" })._id,
     "JK": db.authors.findOne({ name: "Rupert Farley" })._id,
@@ -45,7 +99,9 @@ db.books.insertMany([
         pages: 384,
         dimensions: '16.2 x 3.6 x 23.6 cm',
         price: 17.36,
-        units: 100
+        units: 100,
+        language: languages_ids.EN,
+        format: formats_ids.HC
     },
     {
         isbn_10: '0857525085',
@@ -55,7 +111,9 @@ db.books.insertMany([
         pages: 496,
         dimensions: '13.46 x 4.06 x 20.57 cm',
         price: 12.99,
-        units: 10
+        units: 10,
+        language: languages_ids.EN,
+        format: formats_ids.AB
     },
     {
         isbn_10: '8376804582',
@@ -65,7 +123,9 @@ db.books.insertMany([
         pages: 462,
         dimensions: '15.24 x 3.43 x 22.86 cm',
         price: 28.99,
-        units: 16
+        units: 16,
+        language: languages_ids.SP,
+        format: formats_ids.HC
     },
     {
         isbn_10: '9780241250310',
@@ -75,7 +135,9 @@ db.books.insertMany([
         pages: 999,
         dimensions: '26 x 2.2 x 30.9 cm',
         price: 35.99,
-        units: 2
+        units: 2,
+        language: languages_ids.IT,
+        format: formats_ids.HC
     },
     {
         isbn_10: '1398525685',
@@ -85,7 +147,9 @@ db.books.insertMany([
         pages: 120,
         dimensions: '13 x 2.65 x 19.8 cm',
         price: 20.99,
-        units: 50
+        units: 50,
+        language: languages_ids.DU,
+        format: formats_ids.HC
     },
     {
         isbn_10: '9876543210',
@@ -95,17 +159,21 @@ db.books.insertMany([
         pages: 500,
         dimensions: '13 x 2.65 x 19.8 cm',
         price: 25.99,
-        units: 50
+        units: 50,
+        language: languages_ids.EN,
+        format: formats_ids.PB
     },
     {
         isbn_10: "1578943210",
         isbn_13: "978-1578943210",
-        title: "Lord of the bracelet",
+        title: "Lord of the Bracelet",
         description: "elves and dwarves",
         pages: 700,
         dimensions: "13 x 2.65 x 19.8 cm",
         price: 35.99,
-        units: 15
+        units: 15,
+        language: languages_ids.DU,
+        format: formats_ids.PB
     },
     {
         isbn_10: "1278943210",
@@ -115,29 +183,34 @@ db.books.insertMany([
         pages: 350,
         dimensions: "13 x 2.65 x 19.8 cm",
         price: 17.99,
-        units: 120
+        units: 120,
+        language: languages_ids.EN,
+        format: formats_ids.HC
     },
     {
         isbn_10: "1378943210",
         isbn_13: "978-1378943210",
-        title: "Them witches",
+        title: "Them Witches",
         description: "spooky",
         pages: 200,
         dimensions: "13 x 2.65 x 19.8 cm",
         price: 35.99,
-        units: 15
+        units: 15,
+        language: languages_ids.FR,
+        format: formats_ids.HC
     },
     {
         isbn_10: "2378943210",
         isbn_13: "978-2378943210",
-        title: "Boss killer",
+        title: "Boss Killer",
         description: "crime, mafia",
         pages: 201,
         dimensions: "13 x 2.65 x 19.8 cm",
         price: 19.99,
-        units: 22
+        units: 22,
+        language: languages_ids.EN,
+        format: formats_ids.HC
     }
-
 ]);
 
 books_ids = {
@@ -155,7 +228,7 @@ books_ids = {
 
 db.categories.insertMany([
     {
-        name: "Children's bookss"
+        name: "Children's books"
     },
     {
         name: "Fiction"
@@ -176,7 +249,7 @@ db.categories.insertMany([
         name: "Mystery"
     },
     {
-        name: "Literature&Fiction"
+        name: "Literature & Fiction"
     },
     {
         name: "Early Learning"
@@ -252,58 +325,101 @@ db.categories.insertMany([
     }
 ])
 
-db.categories.update({ _id: categories_ids.TH }, { $push: { parentCategoryId: categories_ids.CTM } })
-db.categories.update({ _id: categories_ids.MY }, { $push: { parentCategoryId: categories_ids.CTM } })
-db.categories.update({ _id: categories_ids.BD }, { $push: { parentCategoryId: categories_ids.CTM } })
-db.categories.update({ _id: categories_ids.LAF }, { $push: { parentCategoryId: categories_ids.CB } })
-db.categories.update({ _id: categories_ids.SNH }, { $push: { parentCategoryId: categories_ids.CB } })
-db.categories.update({ _id: categories_ids.EL }, { $push: { parentCategoryId: categories_ids.CB } })
-db.categories.update({ _id: categories_ids.RO }, { $push: { parentCategoryId: categories_ids.FI } })
-db.categories.update({ _id: categories_ids.LF }, { $push: { parentCategoryId: categories_ids.FI } })
-db.categories.update({ _id: categories_ids.CTM }, { $push: { parentCategoryId: categories_ids.FI } })
-db.categories.update({ _id: categories_ids.HB }, { $push: { parentCategoryId: categories_ids.HS } })
-db.categories.update({ _id: categories_ids.MH }, { $push: { parentCategoryId: categories_ids.HS } })
-db.categories.update({ _id: categories_ids.AHC }, { $push: { parentCategoryId: categories_ids.HS } })
-db.categories.update({ _id: categories_ids.MU }, { $push: { parentCategoryId: categories_ids.BI } })
-db.categories.update({ _id: categories_ids.HI }, { $push: { parentCategoryId: categories_ids.BI } })
-db.categories.update({ _id: categories_ids.FTM }, { $push: { parentCategoryId: categories_ids.BI } })
-db.categories.update({ _id: categories_ids.VE }, { $push: { parentCategoryId: categories_ids.LF } })
-db.categories.update({ _id: categories_ids.SF }, { $push: { parentCategoryId: categories_ids.SFF } })
-db.categories.update({ _id: categories_ids.FA }, { $push: { parentCategoryId: categories_ids.SFF } })
-db.categories.update({ _id: categories_ids.SS }, { $push: { parentCategoryId: categories_ids.FA } })
-db.categories.update({ _id: categories_ids.FT }, { $push: { parentCategoryId: categories_ids.FA } })
-db.categories.update({ _id: categories_ids.EP }, { $push: { parentCategoryId: categories_ids.FA } })
-db.categories.update({ _id: categories_ids.SO }, { $push: { parentCategoryId: categories_ids.SF } })
-db.categories.update({ _id: categories_ids.UR }, { $push: { parentCategoryId: categories_ids.SF } })
-db.categories.update({ _id: categories_ids.PA }, { $push: { parentCategoryId: categories_ids.SF } })
-db.categories.update({ _id: categories_ids.AH }, { $push: { parentCategoryId: categories_ids.SF } })
-db.categories.update({ _id: categories_ids.HSF }, { $push: { parentCategoryId: categories_ids.AH } })
-db.categories.update({ _id: categories_ids.ML }, { $push: { parentCategoryId: categories_ids.HSF } })
+categories_ids = {
+    "CB": db.categories.findOne({ name: "Children's books" })._id,
+    "FI": db.categories.findOne({ name: "Fiction" })._id,
+    "HS": db.categories.findOne({ name: "History" })._id,
+    "BI": db.categories.findOne({ name: "Biography" })._id,
+    "TH": db.categories.findOne({ name: "Thrillers" })._id,
+    "BD": db.categories.findOne({ name: "British Detectives" })._id,
+    "MY": db.categories.findOne({ name: "Mystery" })._id,
+    "LAF": db.categories.findOne({ name: "Literature & Fiction" })._id,
+    "EL": db.categories.findOne({ name: "Early Learning" })._id,
+    "SNH": db.categories.findOne({ name: "Science, Nature & How it works" })._id,
+    "CTM": db.categories.findOne({ name: "Crime Thrillers & Mystery" })._id,
+    "RO": db.categories.findOne({ name: "Romance" })._id,
+    "LF": db.categories.findOne({ name: "Literary Fiction" })._id,
+    "MH": db.categories.findOne({ name: "Military History" })._id,
+    "HB": db.categories.findOne({ name: "Historical Biographies" })._id,
+    "AHC": db.categories.findOne({ name: "Ancient History & Civilisation" })._id,
+    "HI": db.categories.findOne({ name: "Historical" })._id,
+    "FTM": db.categories.findOne({ name: "Film, Television & Music" })._id,
+    "MU": db.categories.findOne({ name: "Music" })._id,
+    "SFF": db.categories.findOne({ name: "Science Fiction & Fantasy" })._id,
+    "FA": db.categories.findOne({ name: "Fantasy" })._id,
+    "SF": db.categories.findOne({ name: "Science Fiction" })._id,
+    "EP": db.categories.findOne({ name: "Epic" })._id,
+    "SS": db.categories.findOne({ name: "Sword & Sorcery" })._id,
+    "FT": db.categories.findOne({ name: "Fairy Tales" })._id,
+    "AH": db.categories.findOne({ name: "Alternative History" })._id,
+    "UR": db.categories.findOne({ name: "Urban" })._id,
+    "PA": db.categories.findOne({ name: "Post-Apocalyptic" })._id,
+    "HSF": db.categories.findOne({ name: "Hard Science Fiction" })._id,
+    "ML": db.categories.findOne({ name: "Myths & Legends" })._id,
+    "VE": db.categories.findOne({ name: "Vehicles" })._id,
+    "SO": db.categories.findOne({ name: "Space Opera" })._id
+}
+
+db.categories.update({ _id: categories_ids.TH }, { $set: { parentId: categories_ids.CTM}})
+db.categories.update({ _id: categories_ids.MY }, { $set: { parentId: categories_ids.CTM } })
+db.categories.update({ _id: categories_ids.BD }, { $set: { parentId: categories_ids.CTM } })
+db.categories.update({ _id: categories_ids.LAF }, { $set: { parentId: categories_ids.CB } })
+db.categories.update({ _id: categories_ids.SNH }, { $set: { parentId: categories_ids.CB } })
+db.categories.update({ _id: categories_ids.EL }, { $set: { parentId: categories_ids.CB } })
+db.categories.update({ _id: categories_ids.RO }, { $set: { parentId: categories_ids.FI } })
+db.categories.update({ _id: categories_ids.LF }, { $set: { parentId: categories_ids.FI } })
+db.categories.update({ _id: categories_ids.CTM }, { $set: { parentId: categories_ids.FI } })
+db.categories.update({ _id: categories_ids.HB }, { $set: { parentId: categories_ids.HS } })
+db.categories.update({ _id: categories_ids.MH }, { $set: { parentId: categories_ids.HS } })
+db.categories.update({ _id: categories_ids.AHC }, { $set: { parentId: categories_ids.HS } })
+db.categories.update({ _id: categories_ids.MU }, { $set: { parentId: categories_ids.BI } })
+db.categories.update({ _id: categories_ids.HI }, { $set: { parentId: categories_ids.BI } })
+db.categories.update({ _id: categories_ids.FTM }, { $set: { parentId: categories_ids.BI } })
+db.categories.update({ _id: categories_ids.VE }, { $set: { parentId: categories_ids.LF } })
+db.categories.update({ _id: categories_ids.SF }, { $set: { parentId: categories_ids.SFF } })
+db.categories.update({ _id: categories_ids.FA }, { $set: { parentId: categories_ids.SFF } })
+db.categories.update({ _id: categories_ids.SS }, { $set: { parentId: categories_ids.FA } })
+db.categories.update({ _id: categories_ids.FT }, { $set: { parentId: categories_ids.FA } })
+db.categories.update({ _id: categories_ids.EP }, { $set: { parentId: categories_ids.FA } })
+db.categories.update({ _id: categories_ids.SO }, { $set: { parentId: categories_ids.SF } })
+db.categories.update({ _id: categories_ids.UR }, { $set: { parentId: categories_ids.SF } })
+db.categories.update({ _id: categories_ids.PA }, { $set: { parentId: categories_ids.SF } })
+db.categories.update({ _id: categories_ids.AH }, { $set: { parentId: categories_ids.SF } })
+db.categories.update({ _id: categories_ids.HSF }, { $set: { parentId: categories_ids.AH } })
+db.categories.update({ _id: categories_ids.ML }, { $set: { parentId: categories_ids.HSF } })
 
 db.characters.insertMany([
     {
-        name: "AIs"
+        name: "AIs",
+        category:categories_ids.SF
     },
     {
-        name: "Aliens"
+        name: "Aliens",
+        category: categories_ids.SF
     },
     {
-        name: "Clones"
+        name: "Clones",
+        category: categories_ids.SF
     },
     {
-        name: "Corporations"
+        name: "Corporations",
+        category: categories_ids.FI
     },
     {
-        name: "Mutants"
+        name: "Mutants",
+        category: categories_ids.FI
     },
     {
-        name: "Pirates"
+        name: "Pirates",
+        category: categories_ids.FI
     },
     {
-        name: "Psychics"
+        name: "Psychics",
+        category: categories_ids.SFF
     },
     {
-        name: "Robots & Androids"
+        name: "Robots & Androids",
+        category: categories_ids.SF
     }
 ])
 
@@ -317,15 +433,6 @@ characters_ids = {
     "PS": db.characters.findOne({ name: "Psychics" })._id,
     "RA": db.characters.findOne({ name: "Robots & Androids" })._id
 }
-
-db.characters.update({ _id: characters_ids.AI }, { $push: { categories: categories_ids.SF } })
-db.characters.update({ _id: characters_ids.AL }, { $push: { categories: categories_ids.SF } })
-db.characters.update({ _id: characters_ids.CL }, { $push: { categories: categories_ids.SF } })
-db.characters.update({ _id: characters_ids.CO }, { $push: { categories: categories_ids.FI } })
-db.characters.update({ _id: characters_ids.MU }, { $push: { categories: categories_ids.FI } })
-db.characters.update({ _id: characters_ids.PI }, { $push: { categories: categories_ids.FI } })
-db.characters.update({ _id: characters_ids.PS }, { $push: { categories: categories_ids.SFF } })
-db.characters.update({ _id: characters_ids.RA }, { $push: { categories: categories_ids.SF } })
 
 db.countries.insertMany([
     {
@@ -361,7 +468,8 @@ db.customers.insertMany([
         street_name: "Geekway",
         street_number: "1",
         postal_code: "9898",
-        city: "Edinbored"
+        city: "Edinbored",
+        country: countries_ids.UK
     },
     {
         first_name: "Jose",
@@ -370,7 +478,8 @@ db.customers.insertMany([
         street_name: "Reggaetton",
         street_number: "2",
         postal_code: "10008",
-        city: "Barcelona"
+        city: "Barcelona",
+        country: countries_ids.SP
     },
     {
         first_name: "Ketchup",
@@ -378,8 +487,9 @@ db.customers.insertMany([
         email: "goodtobegood@mmm.ok",
         street_name: "Vroomvroom",
         street_number: "1234556",
-        postal_code: "250",
-        city: "Munich"
+        postal_code: "Munich",
+        city: "250",
+        country: countries_ids.DU
     }
 ])
 
@@ -387,37 +497,6 @@ customers_ids = {
     "TF": db.customers.findOne({ first_name: "Tom", last_name: "Fluke" })._id,
     "JA": db.customers.findOne({ first_name: "Jose", last_name: "Armando" })._id,
     "KH": db.customers.findOne({ first_name: "Ketchup", last_name: "Heinz" })._id
-}
-
-db.customers.update({ _id: customers_ids.TF }, { $push: { countries: countries_ids.UK } })
-db.customers.update({ _id: customers_ids.JA }, { $push: { countries: countries_ids.SP } })
-db.customers.update({ _id: customers_ids.KH }, { $push: { countries: countries_ids.DU } })
-
-db.formats.insertMany([
-    {
-        name: "Hardcover"
-    },
-    {
-        name: "Paperback"
-    },
-    {
-        name: "Audiobooks"
-    },
-    {
-        name: "Kindle Books"
-    },
-    {
-        name: "Spiral-bound"
-    }
-
-])
-
-formats_ids = {
-    "HC": db.formats.findOne({ name: "Hardcover" })._id,
-    "PB": db.formats.findOne({ name: "Paperback" })._id,
-    "AB": db.formats.findOne({ name: "Audiobooks" })._id,
-    "KB": db.formats.findOne({ name: "Kindle Books" })._id,
-    "SP": db.formats.findOne({ name: "Spiral-bound" })._id
 }
 
 db.genres.insertMany([
@@ -448,33 +527,6 @@ genres_ids = {
     "NR": db.genres.findOne({ name: "Non-Romantic" })._id,
     "RO": db.genres.findOne({ name: "Romantic" })._id,
     "TH": db.genres.findOne({ name: "Thriller" })._id
-}
-
-db.languages.insertMany([
-    {
-        name: "English"
-    },
-    {
-        name: "French"
-    },
-    {
-        name: "German"
-    },
-    {
-        name: "Italian"
-    },
-    {
-        name: "Spanish"
-    }
-
-])
-
-languages_ids = {
-    "EN": db.languages.findOne({ name: "English" })._id,
-    "FR": db.languages.findOne({ name: "French" })._id,
-    "GE": db.languages.findOne({ name: "German" })._id,
-    "IT": db.languages.findOne({ name: "Italian" })._id,
-    "SP": db.languages.findOne({ name: "Spanish" })._id
 }
 
 db.publishers.insertMany([
@@ -508,28 +560,6 @@ publishers_ids = {
     "QU": db.publishers.findOne({ name: "Quercus" })._id,
     "DO": db.publishers.findOne({ name: "Doubleday" })._id
 }
-
-db.books.update({ _id: books_ids.RG }, { $push: { formats: formats_ids.HC } })
-db.books.update({ _id: books_ids.GP }, { $push: { formats: formats_ids.AB } })
-db.books.update({ _id: books_ids.RPG }, { $push: { formats: formats_ids.HC } })
-db.books.update({ _id: books_ids.TTB }, { $push: { formats: formats_ids.HC } })
-db.books.update({ _id: books_ids.IB }, { $push: { formats: formats_ids.HC } })
-db.books.update({ _id: books_ids.HP }, { $push: { formats: formats_ids.PB } })
-db.books.update({ _id: books_ids.LOTB }, { $push: { formats: formats_ids.PB } })
-db.books.update({ _id: books_ids.GB }, { $push: { formats: formats_ids.HC } })
-db.books.update({ _id: books_ids.TW }, { $push: { formats: formats_ids.HC } })
-db.books.update({ _id: books_ids.BK }, { $push: { formats: formats_ids.HC } })
-
-db.books.update({ _id: books_ids.RG }, { $push: { languages: languages_ids.EN } })
-db.books.update({ _id: books_ids.GP }, { $push: { languages: languages_ids.EN } })
-db.books.update({ _id: books_ids.RPG }, { $push: { languages: languages_ids.SP } })
-db.books.update({ _id: books_ids.TTB }, { $push: { languages: languages_ids.IT } })
-db.books.update({ _id: books_ids.IB }, { $push: { languages: languages_ids.GE } })
-db.books.update({ _id: books_ids.HP }, { $push: { languages: languages_ids.EN } })
-db.books.update({ _id: books_ids.LOTB }, { $push: { languages: languages_ids.GE } })
-db.books.update({ _id: books_ids.GB }, { $push: { languages: languages_ids.EN } })
-db.books.update({ _id: books_ids.TW }, { $push: { languages: languages_ids.FR } })
-db.books.update({ _id: books_ids.BK }, { $push: { languages: languages_ids.EN } })
 
 db.books.update({ _id: books_ids.RG }, { $push: { publishers: publishers_ids.QU } })
 db.books.update({ _id: books_ids.GP }, { $push: { publishers: publishers_ids.SU } })
