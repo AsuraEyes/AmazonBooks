@@ -219,16 +219,13 @@ db.createCollection("items", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["book", "order", "quantity", "unit_price", "total_price"],
+            required: ["book", "quantity", "unit_price", "total_price"],
             properties: {
                 book: {
                     bsonType: "objectId"
                 },
-                order: {
-                    bsonType: "objectId"
-                },
                 quantity: {
-                    bsonType: "int"
+                    bsonType: "double"
                 },
                 unit_price: {
                     bsonType: "double"
@@ -259,8 +256,11 @@ db.createCollection("orders", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["description", "total_price", "date"],
+            required: ["customer", "description", "total_price", "date"],
             properties: {
+                customer: {
+                    bsonType: "objectId"
+                },
                 description: {
                     bsonType: "string"
                 },
@@ -268,7 +268,14 @@ db.createCollection("orders", {
                     bsonType: "double"
                 },
                 date: {
-                    bsonType: "timestamp"
+                    bsonType: "date"
+                },
+                items: {
+                    bsonType: "array",
+                    uniqueItems: true,
+                    items: {
+                        bsonType: "objectId"
+                    }
                 }
             }
         }
