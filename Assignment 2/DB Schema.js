@@ -59,10 +59,10 @@ db.createCollection("books", {
                     bsonType: "int"
                 },
                 language: {
-                        bsonType: "objectId"
-                    },
+                    bsonType: "objectId"
+                },
                 format: {
-                        bsonType: "objectId"
+                    bsonType: "objectId"
                 },
                 authors: {
                     bsonType: "array",
@@ -256,7 +256,7 @@ db.createCollection("orders", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["customer", "description", "total_price", "date"],
+            required: ["customer", "description", "date"],
             properties: {
                 customer: {
                     bsonType: "objectId"
@@ -277,6 +277,7 @@ db.createCollection("orders", {
                         bsonType: "objectId"
                     }
                 }
+
             }
         }
     }
