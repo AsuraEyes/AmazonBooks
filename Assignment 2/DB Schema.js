@@ -219,18 +219,18 @@ db.createCollection("items", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["book", "quantity", "unit_price", "total_price"],
+            required: ["book", "quantity", "unit_price"],
             properties: {
                 book: {
                     bsonType: "objectId"
                 },
                 quantity: {
-                    bsonType: "double"
+                    bsonType: "int"
                 },
                 unit_price: {
                     bsonType: "double"
                 },
-                total_price: {
+                price: {
                     bsonType: "double"
                 }
             }
@@ -274,7 +274,7 @@ db.createCollection("orders", {
                     bsonType: "array",
                     uniqueItems: true,
                     items: {
-                        bsonType: "objectId"
+                        bsonType: "object"
                     }
                 }
 

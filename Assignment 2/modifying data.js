@@ -13,7 +13,7 @@ books_ids = {
 
 // Sell a book to a customer
 
-const uri = 'mongodb://localhost:27017/'
+db.getCollection("unknown").find({})
 const client = new MongoClient(uri);
 await client.connect();
 
@@ -75,6 +75,37 @@ try {
     await session.endSession();
     await client.close();
 }
+
+//--------------------------------------------------------------------
+db.orders.bulkWrite([
+    {
+        insertOne: {
+            customer: customers_ids.JA,
+            description: "good book",
+            date: new Date(),
+            items: [
+                {
+                    book: books_ids.TW,
+                    quantity: 3,
+                    unit_price: db.books.findOne({ title: "Them Witches" }).price
+                }
+            ]
+        }
+    },
+    {
+        updateOne: {
+            "filter": { "items.book": books_ids.TW },
+            "update":
+                [{
+                    $set: {
+                        total_price: { $multiply: ["quantity", "price"] }
+                    }
+                }
+                ]
+        }
+    }
+])
+//------------------------------------------------------------
 
 
 

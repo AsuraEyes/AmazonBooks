@@ -32,14 +32,7 @@ const insertedOrder = orders.insertOne(
         date: new Date(),
     }
 )
-
-items.insertOne(
-    {
-        order: insertedOrder.insertedId,
-        book: books_ids.HP,
-        quantity: 2,
-        unit_price: db.books.findOne({ title: "Harry Potter" }).price
-    });
+// insert the order together with an array of items - books
 items.insertOne(
     {
         order: insertedOrder.insertedId,
@@ -56,19 +49,18 @@ books.updateOne(
             units: -1
         }
     });
-items.aggregate(
-    { $match: { book: books_ids.HP } },
+items.updateOne(
     {
-        $set: {
-            total_price: {
-                $multiply: ["$unit_price", "$quantity"]
-            }
-        }
+        book: books_ids.TW
     },
-    { $merge: "items" }
-);
+    [{
+        $set: {
+            total_price: { $multiply: ["$quantity", "$unit_price"] }
+        }
+    }])
+
 items.aggregate(
-    {$match : { order: insertedOrder.insertedId}},
+    { $match: { order: insertedOrder.insertedId } },
     {
         $group: {
             _id: "$order",
@@ -77,7 +69,7 @@ items.aggregate(
             }
         }
     },
-    {$merge: "orders"}   
+    { $merge: "orders" }
 )
 
 // Change the address of a customer
@@ -96,6 +88,78 @@ db.books.updateOne(
 
 // Retire the "Space Opera" category and assign all books from that category to the parent category. Don't assume you know the id of the parent category.
 
-// Sell 3 copies of one book and 2 of another in a single order
-// Similar to first problem, replace insertOne with insertMany - try to use transactions, and update instead of aggregate
+db.books.updateMany(
+    {categories : db.categories.findOne( { name: "Space Opera" })._id },
+    {$set: { categories: [db.categories.findOne( { name: "Space Opera" }).parentId]}}
+)
 
+db.characters.updateMany(
+    {category : db.categories.findOne( { name: "Space Opera" })._id },
+    {$set: { category: [db.categories.findOne( { name: "Space Opera" }).parentId]}}
+)
+
+db.categories.updateMany(
+    {parentId : db.categories.findOne( { name: "Space Opera" })._id },
+    {$set: { parentId: [db.categories.findOne( { name: "Space Opera" }).parentId]}}
+)
+
+db.categories.deleteOne(
+    {
+        name: "Space Opera"
+    }
+)
+
+// Sell 3 copies of one book and 2 of another in a single order
+
+const insertedOrder = orders.insertOne(
+    {
+        customer: customers_ids.JA,
+        description: "good book",
+        date: new Date(),
+    }
+)
+items.insertMany([
+    {
+        order: insertedOrder.insertedId,
+        book: books_ids.TW,
+        quantity: 3,
+        unit_price: db.books.findOne({ title: "Them Witches" }).price
+    },
+    {
+        order: insertedOrder.insertedId,
+        book: books_ids.HP,
+        quantity: 2,
+        unit_price: db.books.findOne({ title: "Harry Potter" }).price
+    }]);
+
+books.updateMany(
+    {
+        _id: { $in: [books_ids.TW, books_ids.HP] }
+    },
+    {
+        $inc: {
+            units: -1
+        }
+    });
+
+items.updateMany(
+    {
+        book: { $in: [books_ids.TW, books_ids.HP] }
+    },
+    [{
+        $set: {
+            total_price: { $multiply: ["$quantity", "$unit_price"] }
+        }
+    }])
+items.aggregate(
+    { $match: { order: insertedOrder.insertedId } },
+    {
+        $group: {
+            _id: "$order",
+            total_price: {
+                $sum: "$total_price"
+            }
+        }
+    },
+    { $merge: "orders" }
+)
