@@ -106,6 +106,22 @@ db.orders.bulkWrite([
     }
 ])
 //------------------------------------------------------------
-
-
-
+const changeEvent = {
+   "_id":{},
+   "operationType": "insert",
+   "clusterTime": "1631414145",
+   "wallTime": new Date(),
+   "ns": {
+      "db": "AmazonBooks",
+      "coll": "items"
+   },
+   "documentKey": {
+      "_id": new BSON.ObjectId("641db12d9096a7f84fe9e671"),
+   },
+   "fullDocument": {
+      "_id":  new BSON.ObjectId("641db12d9096a7f84fe9e671"),
+      "quantity": 4,
+      "unit_price": 50
+}
+} //Add a changeEvent to test it with your Trigger
+exports(changeEvent);

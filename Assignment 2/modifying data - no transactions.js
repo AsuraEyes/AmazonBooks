@@ -25,52 +25,28 @@ const books = db.books;
 
 // Sell a book to a customer - try to use update instead of aggregate
 
-const insertedOrder = orders.insertOne(
-    {
-        customer: customers_ids.JA,
-        description: "good book",
-        date: new Date(),
-    }
+orders.insertOne({
+    customer: customers_ids.JA,
+    description: "good book",
+    date: new Date(),
+    items: [
+        {
+            book: books_ids.TW,
+            quantity: 3,
+            unit_price: db.books.findOne({ title: "Them Witches" }).price
+        }
+    ]
+}
 )
-// insert the order together with an array of items - books
-items.insertOne(
-    {
-        order: insertedOrder.insertedId,
-        book: books_ids.TW,
-        quantity: 3,
-        unit_price: db.books.findOne({ title: "Them Witches" }).price
-    });
 books.updateOne(
     {
         _id: books_ids.TW
     },
     {
         $inc: {
-            units: -1
+            units: -3
         }
     });
-items.updateOne(
-    {
-        book: books_ids.TW
-    },
-    [{
-        $set: {
-            total_price: { $multiply: ["$quantity", "$unit_price"] }
-        }
-    }])
-
-items.aggregate(
-    { $match: { order: insertedOrder.insertedId } },
-    {
-        $group: {
-            _id: "$order",
-            total_price: {
-                $sum: "$total_price"
-            }
-        }
-    },
-    { $merge: "orders" }
-)
 
 // Change the address of a customer
 
@@ -89,18 +65,18 @@ db.books.updateOne(
 // Retire the "Space Opera" category and assign all books from that category to the parent category. Don't assume you know the id of the parent category.
 
 db.books.updateMany(
-    {categories : db.categories.findOne( { name: "Space Opera" })._id },
-    {$set: { categories: [db.categories.findOne( { name: "Space Opera" }).parentId]}}
+    { categories: db.categories.findOne({ name: "Space Opera" })._id },
+    { $set: { categories: [db.categories.findOne({ name: "Space Opera" }).parentId] } }
 )
 
 db.characters.updateMany(
-    {category : db.categories.findOne( { name: "Space Opera" })._id },
-    {$set: { category: [db.categories.findOne( { name: "Space Opera" }).parentId]}}
+    { category: db.categories.findOne({ name: "Space Opera" })._id },
+    { $set: { category: [db.categories.findOne({ name: "Space Opera" }).parentId] } }
 )
 
 db.categories.updateMany(
-    {parentId : db.categories.findOne( { name: "Space Opera" })._id },
-    {$set: { parentId: [db.categories.findOne( { name: "Space Opera" }).parentId]}}
+    { parentId: db.categories.findOne({ name: "Space Opera" })._id },
+    { $set: { parentId: [db.categories.findOne({ name: "Space Opera" }).parentId] } }
 )
 
 db.categories.deleteOne(
@@ -111,55 +87,46 @@ db.categories.deleteOne(
 
 // Sell 3 copies of one book and 2 of another in a single order
 
-const insertedOrder = orders.insertOne(
+orders.insertOne(
     {
         customer: customers_ids.JA,
         description: "good book",
         date: new Date(),
+        items: [
+            {
+                book: books_ids.TW,
+                quantity: 3,
+                unit_price: db.books.findOne({ title: "Them Witches" }).price
+            },
+            {
+                book: books_ids.HP,
+                quantity: 2,
+                unit_price: db.books.findOne({ title: "Harry Potter" }).price
+            }]
     }
 )
-items.insertMany([
+books.bulkWrite([
     {
-        order: insertedOrder.insertedId,
-        book: books_ids.TW,
-        quantity: 3,
-        unit_price: db.books.findOne({ title: "Them Witches" }).price
+        updateOne: {
+            "filter": { _id : books_ids.TW },
+            "update":
+                {
+                    $inc: {
+                        units:  -3
+                    }
+                }
+        }
     },
-    {
-        order: insertedOrder.insertedId,
-        book: books_ids.HP,
-        quantity: 2,
-        unit_price: db.books.findOne({ title: "Harry Potter" }).price
-    }]);
+        {
+        updateOne: {
+            "filter": { _id : books_ids.HP },
+            "update":
+                {
+                    $inc: {
+                        units:  -2
+                    }
+                }
+        }
+    }
+]);
 
-books.updateMany(
-    {
-        _id: { $in: [books_ids.TW, books_ids.HP] }
-    },
-    {
-        $inc: {
-            units: -1
-        }
-    });
-
-items.updateMany(
-    {
-        book: { $in: [books_ids.TW, books_ids.HP] }
-    },
-    [{
-        $set: {
-            total_price: { $multiply: ["$quantity", "$unit_price"] }
-        }
-    }])
-items.aggregate(
-    { $match: { order: insertedOrder.insertedId } },
-    {
-        $group: {
-            _id: "$order",
-            total_price: {
-                $sum: "$total_price"
-            }
-        }
-    },
-    { $merge: "orders" }
-)
