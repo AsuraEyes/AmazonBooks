@@ -59,10 +59,10 @@ db.createCollection("books", {
                     bsonType: "int"
                 },
                 language: {
-                        bsonType: "objectId"
-                    },
+                    bsonType: "objectId"
+                },
                 format: {
-                        bsonType: "objectId"
+                    bsonType: "objectId"
                 },
                 authors: {
                     bsonType: "array",
@@ -219,13 +219,16 @@ db.createCollection("items", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["book", "quantity", "unit_price", "total_price"],
+            required: ["book", "quantity", "unit_price"],
             properties: {
+                order: {
+                    bsonType: "objectId"
+                },
                 book: {
                     bsonType: "objectId"
                 },
                 quantity: {
-                    bsonType: "double"
+                    bsonType: "int"
                 },
                 unit_price: {
                     bsonType: "double"
@@ -256,7 +259,7 @@ db.createCollection("orders", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["customer", "description", "total_price", "date"],
+            required: ["customer", "description", "date"],
             properties: {
                 customer: {
                     bsonType: "objectId"
@@ -274,9 +277,25 @@ db.createCollection("orders", {
                     bsonType: "array",
                     uniqueItems: true,
                     items: {
-                        bsonType: "objectId"
+                        bsonType: "object",
+                        required: ["book", "quantity", "unit_price"],
+                        properties: {
+                            order: {
+                                bsonType: "objectId"
+                            },
+                            book: {
+                                bsonType: "objectId"
+                            },
+                            quantity: {
+                                bsonType: "int"
+                            },
+                            unit_price: {
+                                bsonType: "double"
+                            }
+                        }
                     }
                 }
+
             }
         }
     }
