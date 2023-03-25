@@ -27,16 +27,20 @@ FROM book b
 WHERE c.name NOT IN ('Science Fiction', 'Fantasy');
 
 -- 5. Average page count by genre
-SELECT genre.name AS genre_name, AVG(book.pages) AS average_page_count
+SELECT genre.name, AVG(book.pages) AS average_page_count
 FROM book_genre
          JOIN genre ON book_genre.g_id = genre.id
          JOIN book ON book_genre.isbn_10 = book.isbn_10 AND book_genre.isbn_13 = book.isbn_13
-GROUP BY genre.name;
+group by genre.name;
 
 -- 6. Categories that have no sub-categories
 SELECT c.name
 FROM category c
 WHERE c.parent_id IS NULL;
+
+SELECT c.name
+FROM category c
+WHERE c.parent_id != c.id;
 
 -- 7. ISBN numbers of books with more than one author
 SELECT ba.isbn_10, ba.isbn_13
