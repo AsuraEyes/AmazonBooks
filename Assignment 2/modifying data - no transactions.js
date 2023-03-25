@@ -25,16 +25,19 @@ const books = db.books;
 
 // Sell a book to a customer - try to use update instead of aggregate
 
+
+const itemId = items.insertOne({
+    book: books_ids.TW,
+    quantity: 3,
+    unit_price: db.books.findOne({ title: "Them Witches" }).price
+})
+
 orders.insertOne({
     customer: customers_ids.JA,
     description: "good book",
     date: new Date(),
     items: [
-        {
-            book: books_ids.TW,
-            quantity: 3,
-            unit_price: db.books.findOne({ title: "Them Witches" }).price
-        }
+        itemId.insertedId
     ]
 }
 )
@@ -47,7 +50,6 @@ books.updateOne(
             units: -3
         }
     });
-
 // Change the address of a customer
 
 db.customers.updateOne(
@@ -87,23 +89,25 @@ db.categories.deleteOne(
 
 // Sell 3 copies of one book and 2 of another in a single order
 
-orders.insertOne(
-    {
-        customer: customers_ids.JA,
-        description: "good book",
-        date: new Date(),
-        items: [
-            {
-                book: books_ids.TW,
-                quantity: 3,
-                unit_price: db.books.findOne({ title: "Them Witches" }).price
-            },
-            {
-                book: books_ids.HP,
-                quantity: 2,
-                unit_price: db.books.findOne({ title: "Harry Potter" }).price
-            }]
-    }
+const itemId1 = items.insertMany([{
+    book: books_ids.TW,
+    quantity: 3,
+    unit_price: db.books.findOne({ title: "Them Witches" }).price
+},
+{
+    book: books_ids.HP,
+    quantity: 2,
+    unit_price: db.books.findOne({ title: "Harry Potter" }).price
+}
+])
+
+orders.insertOne({
+    customer: customers_ids.JA,
+    description: "good book",
+    date: new Date(),
+    items: itemId1.insertedId
+    
+}
 )
 books.bulkWrite([
     {

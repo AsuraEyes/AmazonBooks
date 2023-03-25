@@ -274,10 +274,9 @@ db.createCollection("orders", {
                     bsonType: "array",
                     uniqueItems: true,
                     items: {
-                        bsonType: "object"
+                        bsonType: "objectId"
                     }
                 }
-
             }
         }
     }
