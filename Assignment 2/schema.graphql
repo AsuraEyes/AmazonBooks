@@ -1,0 +1,1354 @@
+input CharacterCategoryRelationInput {
+  link: ObjectId
+  create: CategoryInsertInput
+}
+
+input ItemOrderRelationInput {
+  link: ObjectId
+  create: OrderInsertInput
+}
+
+input CustomerUpdateInput {
+  email: String
+  _id: ObjectId
+  _id_unset: Boolean
+  city: String
+  first_name_unset: Boolean
+  first_name: String
+  country_unset: Boolean
+  street_number_unset: Boolean
+  city_unset: Boolean
+  street_name_unset: Boolean
+  country: CustomerCountryRelationInput
+  email_unset: Boolean
+  last_name: String
+  postal_code_unset: Boolean
+  last_name_unset: Boolean
+  postal_code: String
+  street_number: String
+  street_name: String
+}
+
+type Customer {
+  _id: ObjectId
+  city: String
+  country: Country
+  email: String
+  first_name: String
+  last_name: String
+  postal_code: String
+  street_name: String
+  street_number: String
+}
+
+input BookQueryInput {
+  units_in: [Int]
+  price_in: [Float]
+  isbn_13_lte: String
+  isbn_10_nin: [String]
+  isbn_13_lt: String
+  _id_ne: ObjectId
+  isbn_13_in: [String]
+  isbn_13_gt: String
+  dimensions_gte: String
+  units_ne: Int
+  price_lt: Float
+  title_in: [String]
+  authors_exists: Boolean
+  format: FormatQueryInput
+  units_exists: Boolean
+  price: Float
+  _id_nin: [ObjectId]
+  genres: [GenreQueryInput]
+  _id_exists: Boolean
+  title_ne: String
+  pages_lte: Int
+  authors: [AuthorQueryInput]
+  genres_in: [GenreQueryInput]
+  pages_lt: Int
+  price_gt: Float
+  pages_in: [Int]
+  units_gt: Int
+  description_gt: String
+  description_lt: String
+  categories_in: [CategoryQueryInput]
+  publishers_in: [PublisherQueryInput]
+  units: Int
+  title_exists: Boolean
+  dimensions: String
+  dimensions_gt: String
+  language_exists: Boolean
+  units_lte: Int
+  description: String
+  dimensions_ne: String
+  isbn_13_gte: String
+  publishers_exists: Boolean
+  publishers_nin: [PublisherQueryInput]
+  dimensions_in: [String]
+  price_exists: Boolean
+  isbn_10_exists: Boolean
+  dimensions_lt: String
+  genres_exists: Boolean
+  pages_nin: [Int]
+  price_lte: Float
+  authors_nin: [AuthorQueryInput]
+  pages_exists: Boolean
+  AND: [BookQueryInput!]
+  description_gte: String
+  _id_gte: ObjectId
+  categories_nin: [CategoryQueryInput]
+  isbn_10_lte: String
+  isbn_10: String
+  _id_gt: ObjectId
+  pages_ne: Int
+  description_exists: Boolean
+  dimensions_nin: [String]
+  categories: [CategoryQueryInput]
+  pages: Int
+  format_exists: Boolean
+  isbn_13: String
+  isbn_10_gt: String
+  title: String
+  units_nin: [Int]
+  description_lte: String
+  dimensions_lte: String
+  units_gte: Int
+  description_ne: String
+  title_gt: String
+  isbn_10_gte: String
+  _id_lt: ObjectId
+  price_ne: Float
+  title_nin: [String]
+  isbn_13_ne: String
+  title_gte: String
+  publishers: [PublisherQueryInput]
+  _id_lte: ObjectId
+  pages_gte: Int
+  isbn_13_nin: [String]
+  language: LanguageQueryInput
+  OR: [BookQueryInput!]
+  isbn_10_lt: String
+  genres_nin: [GenreQueryInput]
+  isbn_13_exists: Boolean
+  isbn_10_ne: String
+  description_nin: [String]
+  pages_gt: Int
+  title_lt: String
+  units_lt: Int
+  dimensions_exists: Boolean
+  isbn_10_in: [String]
+  categories_exists: Boolean
+  price_gte: Float
+  _id: ObjectId
+  authors_in: [AuthorQueryInput]
+  description_in: [String]
+  _id_in: [ObjectId]
+  price_nin: [Float]
+  title_lte: String
+}
+
+input AuthorInsertInput {
+  picture: String
+  _id: ObjectId
+  name: String
+}
+
+type Publisher {
+  _id: ObjectId
+  name: String
+  picture: String
+}
+
+enum FormatSortByInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+}
+
+input CharacterQueryInput {
+  name_gt: String
+  _id_in: [ObjectId]
+  name_ne: String
+  category: CategoryQueryInput
+  category_exists: Boolean
+  name_gte: String
+  name_lte: String
+  _id_nin: [ObjectId]
+  _id_lt: ObjectId
+  _id_exists: Boolean
+  _id_lte: ObjectId
+  name: String
+  AND: [CharacterQueryInput!]
+  _id_ne: ObjectId
+  name_lt: String
+  name_in: [String]
+  _id_gt: ObjectId
+  name_nin: [String]
+  name_exists: Boolean
+  OR: [CharacterQueryInput!]
+  _id: ObjectId
+  _id_gte: ObjectId
+}
+
+input OrderUpdateInput {
+  date: DateTime
+  description: String
+  _id_unset: Boolean
+  date_unset: Boolean
+  description_unset: Boolean
+  total_price_inc: Float
+  customer: OrderCustomerRelationInput
+  _id: ObjectId
+  customer_unset: Boolean
+  total_price: Float
+  total_price_unset: Boolean
+}
+
+input FormatQueryInput {
+  name_in: [String]
+  _id_lte: ObjectId
+  name_gt: String
+  name_gte: String
+  _id_gt: ObjectId
+  name_exists: Boolean
+  name_ne: String
+  _id_gte: ObjectId
+  _id_ne: ObjectId
+  name_lte: String
+  _id: ObjectId
+  AND: [FormatQueryInput!]
+  _id_in: [ObjectId]
+  name: String
+  name_lt: String
+  OR: [FormatQueryInput!]
+  _id_nin: [ObjectId]
+  name_nin: [String]
+  _id_lt: ObjectId
+  _id_exists: Boolean
+}
+
+input OrderLogInsertedInsertInput {
+  _id: ObjectId
+  customer: ObjectId
+  date: DateTime
+  description: String
+}
+
+enum BookSortByInput {
+  DESCRIPTION_DESC
+  ISBN_10_DESC
+  ISBN_13_DESC
+  LANGUAGE_DESC
+  PRICE_DESC
+  TITLE_DESC
+  UNITS_ASC
+  _ID_ASC
+  DIMENSIONS_ASC
+  FORMAT_ASC
+  ISBN_13_ASC
+  LANGUAGE_ASC
+  TITLE_ASC
+  _ID_DESC
+  DESCRIPTION_ASC
+  FORMAT_DESC
+  DIMENSIONS_DESC
+  ISBN_10_ASC
+  PAGES_ASC
+  PAGES_DESC
+  PRICE_ASC
+  UNITS_DESC
+}
+
+input FormatUpdateInput {
+  name_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+  name: String
+}
+
+input CountryQueryInput {
+  name_gt: String
+  _id_nin: [ObjectId]
+  _id_gt: ObjectId
+  OR: [CountryQueryInput!]
+  _id_lt: ObjectId
+  name_nin: [String]
+  _id_exists: Boolean
+  _id_lte: ObjectId
+  _id_in: [ObjectId]
+  name_gte: String
+  _id_gte: ObjectId
+  name: String
+  name_in: [String]
+  AND: [CountryQueryInput!]
+  name_exists: Boolean
+  name_lt: String
+  name_ne: String
+  _id_ne: ObjectId
+  _id: ObjectId
+  name_lte: String
+}
+
+input ItemUpdateInput {
+  _id: ObjectId
+  order: ItemOrderRelationInput
+  quantity_unset: Boolean
+  total_price: Float
+  total_price_unset: Boolean
+  unit_price: Float
+  unit_price_inc: Float
+  book_unset: Boolean
+  total_price_inc: Float
+  order_unset: Boolean
+  unit_price_unset: Boolean
+  quantity_inc: Int
+  quantity: Int
+  book: ItemBookRelationInput
+  _id_unset: Boolean
+}
+
+input BookUpdateInput {
+  price: Float
+  pages_inc: Int
+  pages_unset: Boolean
+  title_unset: Boolean
+  _id: ObjectId
+  pages: Int
+  format_unset: Boolean
+  dimensions_unset: Boolean
+  publishers_unset: Boolean
+  isbn_10: String
+  title: String
+  format: BookFormatRelationInput
+  language_unset: Boolean
+  categories: BookCategoriesRelationInput
+  genres: BookGenresRelationInput
+  publishers: BookPublishersRelationInput
+  price_inc: Float
+  authors: BookAuthorsRelationInput
+  authors_unset: Boolean
+  description: String
+  price_unset: Boolean
+  isbn_13: String
+  isbn_10_unset: Boolean
+  isbn_13_unset: Boolean
+  _id_unset: Boolean
+  description_unset: Boolean
+  units: Int
+  genres_unset: Boolean
+  units_inc: Int
+  categories_unset: Boolean
+  language: BookLanguageRelationInput
+  dimensions: String
+  units_unset: Boolean
+}
+
+enum OrderSortByInput {
+  _ID_ASC
+  CUSTOMER_ASC
+  DATE_ASC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  TOTAL_PRICE_ASC
+  _ID_DESC
+  CUSTOMER_DESC
+  DATE_DESC
+  TOTAL_PRICE_DESC
+}
+
+input ItemBookRelationInput {
+  create: BookInsertInput
+  link: ObjectId
+}
+
+input AuthorQueryInput {
+  picture_in: [String]
+  OR: [AuthorQueryInput!]
+  picture_ne: String
+  picture_gte: String
+  name_in: [String]
+  picture_exists: Boolean
+  name_exists: Boolean
+  _id_gt: ObjectId
+  _id_ne: ObjectId
+  name_lte: String
+  name_gt: String
+  name_nin: [String]
+  picture_nin: [String]
+  _id_gte: ObjectId
+  _id_exists: Boolean
+  _id_lt: ObjectId
+  _id_lte: ObjectId
+  name_gte: String
+  picture_lte: String
+  name: String
+  _id_in: [ObjectId]
+  _id: ObjectId
+  picture_gt: String
+  AND: [AuthorQueryInput!]
+  name_lt: String
+  name_ne: String
+  picture_lt: String
+  picture: String
+  _id_nin: [ObjectId]
+}
+
+enum AuthorSortByInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  PICTURE_ASC
+  PICTURE_DESC
+}
+
+input GenreUpdateInput {
+  name: String
+  name_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+}
+
+type Format {
+  _id: ObjectId
+  name: String
+}
+
+input FormatInsertInput {
+  _id: ObjectId
+  name: String
+}
+
+enum GenreSortByInput {
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  _ID_ASC
+}
+
+type Language {
+  _id: ObjectId
+  name: String
+}
+
+type OrderLogUpdateDescriptionUpdatedField {
+  description: String
+}
+
+input PublisherInsertInput {
+  name: String
+  picture: String
+  _id: ObjectId
+}
+
+type Character {
+  _id: ObjectId
+  category: Category
+  name: String
+}
+
+enum OrderLogSortByInput {
+  _ID_ASC
+  _ID_DESC
+}
+
+type UpdateManyPayload {
+  matchedCount: Int!
+  modifiedCount: Int!
+}
+
+input CharacterInsertInput {
+  _id: ObjectId
+  category: CharacterCategoryRelationInput
+  name: String
+}
+
+scalar DateTime
+
+input Category_idRelationInput {
+  create: CategoryInsertInput
+  link: ObjectId
+}
+
+type Category {
+  _id: Category
+  name: String
+  parentId: ObjectId
+}
+
+input CustomerInsertInput {
+  last_name: String
+  street_name: String
+  _id: ObjectId
+  city: String
+  email: String
+  country: CustomerCountryRelationInput
+  first_name: String
+  postal_code: String
+  street_number: String
+}
+
+enum CharacterSortByInput {
+  CATEGORY_ASC
+  CATEGORY_DESC
+  NAME_ASC
+  NAME_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+type Author {
+  _id: ObjectId
+  name: String
+  picture: String
+}
+
+input ItemQueryInput {
+  unit_price: Float
+  AND: [ItemQueryInput!]
+  total_price_exists: Boolean
+  total_price_gt: Float
+  unit_price_gt: Float
+  _id_nin: [ObjectId]
+  unit_price_gte: Float
+  _id_exists: Boolean
+  quantity_gte: Int
+  total_price_ne: Float
+  _id_in: [ObjectId]
+  book: BookQueryInput
+  unit_price_in: [Float]
+  _id_ne: ObjectId
+  unit_price_lte: Float
+  quantity_gt: Int
+  book_exists: Boolean
+  quantity_in: [Int]
+  _id_lt: ObjectId
+  total_price_nin: [Float]
+  total_price_lt: Float
+  _id_gte: ObjectId
+  OR: [ItemQueryInput!]
+  quantity_nin: [Int]
+  _id: ObjectId
+  total_price_in: [Float]
+  quantity_ne: Int
+  total_price: Float
+  quantity_lte: Int
+  unit_price_ne: Float
+  _id_lte: ObjectId
+  order: OrderQueryInput
+  quantity: Int
+  order_exists: Boolean
+  quantity_exists: Boolean
+  unit_price_nin: [Float]
+  quantity_lt: Int
+  total_price_gte: Float
+  _id_gt: ObjectId
+  total_price_lte: Float
+  unit_price_exists: Boolean
+  unit_price_lt: Float
+}
+
+input BookPublishersRelationInput {
+  create: [PublisherInsertInput]
+  link: [ObjectId]
+}
+
+input CategoryQueryInput {
+  name_gt: String
+  parentId: ObjectId
+  parentId_exists: Boolean
+  name_lte: String
+  name_lt: String
+  name_in: [String]
+  name_nin: [String]
+  parentId_gte: ObjectId
+  name_ne: String
+  parentId_nin: [ObjectId]
+  OR: [CategoryQueryInput!]
+  parentId_lt: ObjectId
+  name_exists: Boolean
+  name: String
+  _id_exists: Boolean
+  parentId_gt: ObjectId
+  parentId_lte: ObjectId
+  parentId_in: [ObjectId]
+  AND: [CategoryQueryInput!]
+  name_gte: String
+  parentId_ne: ObjectId
+  _id: CategoryQueryInput
+}
+
+scalar ObjectId
+
+input CustomerCountryRelationInput {
+  link: ObjectId
+  create: CountryInsertInput
+}
+
+input OrderLogUpdateInput {
+  _id_unset: Boolean
+  inserted: OrderLogInsertedUpdateInput
+  inserted_unset: Boolean
+  updateDescription: OrderLogUpdateDescriptionUpdateInput
+  updateDescription_unset: Boolean
+  _id: ObjectId
+}
+
+enum ItemSortByInput {
+  ORDER_ASC
+  ORDER_DESC
+  QUANTITY_ASC
+  QUANTITY_DESC
+  UNIT_PRICE_ASC
+  _ID_ASC
+  BOOK_ASC
+  BOOK_DESC
+  UNIT_PRICE_DESC
+  _ID_DESC
+  TOTAL_PRICE_ASC
+  TOTAL_PRICE_DESC
+}
+
+input ItemInsertInput {
+  total_price: Float
+  unit_price: Float
+  _id: ObjectId
+  book: ItemBookRelationInput
+  order: ItemOrderRelationInput
+  quantity: Int
+}
+
+input LanguageUpdateInput {
+  name: String
+  name_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+}
+
+input LanguageQueryInput {
+  name_gt: String
+  name_nin: [String]
+  name_lt: String
+  name_in: [String]
+  _id_exists: Boolean
+  name_ne: String
+  _id: ObjectId
+  _id_gt: ObjectId
+  _id_lt: ObjectId
+  name_gte: String
+  _id_ne: ObjectId
+  _id_lte: ObjectId
+  _id_in: [ObjectId]
+  _id_nin: [ObjectId]
+  name_lte: String
+  _id_gte: ObjectId
+  OR: [LanguageQueryInput!]
+  name: String
+  AND: [LanguageQueryInput!]
+  name_exists: Boolean
+}
+
+input OrderQueryInput {
+  total_price_gt: Float
+  date_gte: DateTime
+  total_price_gte: Float
+  description_ne: String
+  description: String
+  total_price_ne: Float
+  AND: [OrderQueryInput!]
+  total_price_exists: Boolean
+  date_exists: Boolean
+  _id_gte: ObjectId
+  date_nin: [DateTime]
+  _id_exists: Boolean
+  date_in: [DateTime]
+  customer_exists: Boolean
+  description_gte: String
+  date_gt: DateTime
+  OR: [OrderQueryInput!]
+  total_price_lte: Float
+  total_price: Float
+  _id: ObjectId
+  description_gt: String
+  description_lte: String
+  description_exists: Boolean
+  date_ne: DateTime
+  description_nin: [String]
+  total_price_in: [Float]
+  _id_ne: ObjectId
+  total_price_nin: [Float]
+  description_lt: String
+  _id_nin: [ObjectId]
+  _id_lte: ObjectId
+  date: DateTime
+  total_price_lt: Float
+  customer: CustomerQueryInput
+  date_lte: DateTime
+  _id_in: [ObjectId]
+  date_lt: DateTime
+  _id_gt: ObjectId
+  _id_lt: ObjectId
+  description_in: [String]
+}
+
+input CategoryInsertInput {
+  _id: Category_idRelationInput
+  name: String
+  parentId: ObjectId
+}
+
+type InsertManyPayload {
+  insertedIds: [ObjectId]!
+}
+
+input OrderLogUpdateDescriptionUpdateInput {
+  removedFields_unset: Boolean
+  updatedFields: OrderLogUpdateDescriptionUpdatedFieldUpdateInput
+  updatedFields_unset: Boolean
+  removedFields: OrderLogUpdateDescriptionRemovedFieldUpdateInput
+}
+
+enum CategorySortByInput {
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  PARENTID_ASC
+  PARENTID_DESC
+  _ID_ASC
+}
+
+type OrderLogUpdateDescriptionRemovedField {
+  description: String
+}
+
+type Item {
+  _id: ObjectId
+  book: Book
+  order: Order
+  quantity: Int
+  total_price: Float
+  unit_price: Float
+}
+
+input OrderLogUpdateDescriptionUpdatedFieldInsertInput {
+  description: String
+}
+
+input OrderLogUpdateDescriptionQueryInput {
+  removedFields_exists: Boolean
+  updatedFields: OrderLogUpdateDescriptionUpdatedFieldQueryInput
+  updatedFields_exists: Boolean
+  AND: [OrderLogUpdateDescriptionQueryInput!]
+  OR: [OrderLogUpdateDescriptionQueryInput!]
+  removedFields: OrderLogUpdateDescriptionRemovedFieldQueryInput
+}
+
+enum CountrySortByInput {
+  NAME_DESC
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+}
+
+type Query {
+  author(query: AuthorQueryInput): Author
+  authors(limit: Int = 100, sortBy: AuthorSortByInput, query: AuthorQueryInput): [Author]!
+  book(query: BookQueryInput): Book
+  books(query: BookQueryInput, limit: Int = 100, sortBy: BookSortByInput): [Book]!
+  categories(query: CategoryQueryInput, limit: Int = 100, sortBy: CategorySortByInput): [Category]!
+  category(query: CategoryQueryInput): Category
+  character(query: CharacterQueryInput): Character
+  characters(query: CharacterQueryInput, limit: Int = 100, sortBy: CharacterSortByInput): [Character]!
+  countries(query: CountryQueryInput, limit: Int = 100, sortBy: CountrySortByInput): [Country]!
+  country(query: CountryQueryInput): Country
+  customer(query: CustomerQueryInput): Customer
+  customers(query: CustomerQueryInput, limit: Int = 100, sortBy: CustomerSortByInput): [Customer]!
+  format(query: FormatQueryInput): Format
+  formats(query: FormatQueryInput, limit: Int = 100, sortBy: FormatSortByInput): [Format]!
+  genre(query: GenreQueryInput): Genre
+  genres(query: GenreQueryInput, limit: Int = 100, sortBy: GenreSortByInput): [Genre]!
+  item(query: ItemQueryInput): Item
+  items(sortBy: ItemSortByInput, query: ItemQueryInput, limit: Int = 100): [Item]!
+  language(query: LanguageQueryInput): Language
+  languages(query: LanguageQueryInput, limit: Int = 100, sortBy: LanguageSortByInput): [Language]!
+  order(query: OrderQueryInput): Order
+  orderLog(query: OrderLogQueryInput): OrderLog
+  orderLogs(limit: Int = 100, sortBy: OrderLogSortByInput, query: OrderLogQueryInput): [OrderLog]!
+  orders(query: OrderQueryInput, limit: Int = 100, sortBy: OrderSortByInput): [Order]!
+  publisher(query: PublisherQueryInput): Publisher
+  publishers(query: PublisherQueryInput, limit: Int = 100, sortBy: PublisherSortByInput): [Publisher]!
+}
+
+input OrderLogUpdateDescriptionInsertInput {
+  removedFields: OrderLogUpdateDescriptionRemovedFieldInsertInput
+  updatedFields: OrderLogUpdateDescriptionUpdatedFieldInsertInput
+}
+
+input OrderLogUpdateDescriptionRemovedFieldQueryInput {
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_in: [String]
+  OR: [OrderLogUpdateDescriptionRemovedFieldQueryInput!]
+  description_nin: [String]
+  description_exists: Boolean
+  AND: [OrderLogUpdateDescriptionRemovedFieldQueryInput!]
+  description_lt: String
+  description_ne: String
+  description: String
+}
+
+type OrderLogUpdateDescription {
+  removedFields: OrderLogUpdateDescriptionRemovedField
+  updatedFields: OrderLogUpdateDescriptionUpdatedField
+}
+
+type Book {
+  _id: ObjectId
+  authors: [Author]
+  categories: [Category]
+  description: String
+  dimensions: String
+  format: Format
+  genres: [Genre]
+  isbn_10: String
+  isbn_13: String
+  language: Language
+  pages: Int
+  price: Float
+  publishers: [Publisher]
+  title: String
+  units: Int
+}
+
+enum LanguageSortByInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+}
+
+input LanguageInsertInput {
+  _id: ObjectId
+  name: String
+}
+
+input CountryInsertInput {
+  _id: ObjectId
+  name: String
+}
+
+type Genre {
+  _id: ObjectId
+  name: String
+}
+
+enum PublisherSortByInput {
+  _ID_ASC
+  _ID_DESC
+  NAME_ASC
+  NAME_DESC
+  PICTURE_ASC
+  PICTURE_DESC
+}
+
+input PublisherUpdateInput {
+  _id: ObjectId
+  _id_unset: Boolean
+  name: String
+  name_unset: Boolean
+  picture: String
+  picture_unset: Boolean
+}
+
+input GenreInsertInput {
+  _id: ObjectId
+  name: String
+}
+
+input BookCategoriesRelationInput {
+  create: [CategoryInsertInput]
+  link: [ObjectId]
+}
+
+type OrderLog {
+  _id: ObjectId
+  inserted: OrderLogInserted
+  updateDescription: OrderLogUpdateDescription
+}
+
+input OrderLogUpdateDescriptionRemovedFieldInsertInput {
+  description: String
+}
+
+input OrderLogQueryInput {
+  inserted_exists: Boolean
+  _id_nin: [ObjectId]
+  updateDescription_exists: Boolean
+  AND: [OrderLogQueryInput!]
+  _id_gt: ObjectId
+  _id: ObjectId
+  _id_lt: ObjectId
+  inserted: OrderLogInsertedQueryInput
+  _id_in: [ObjectId]
+  _id_exists: Boolean
+  updateDescription: OrderLogUpdateDescriptionQueryInput
+  _id_lte: ObjectId
+  OR: [OrderLogQueryInput!]
+  _id_ne: ObjectId
+  _id_gte: ObjectId
+}
+
+type DeleteManyPayload {
+  deletedCount: Int!
+}
+
+input OrderCustomerRelationInput {
+  create: CustomerInsertInput
+  link: ObjectId
+}
+
+type Country {
+  _id: ObjectId
+  name: String
+}
+
+input OrderLogInsertInput {
+  _id: ObjectId
+  inserted: OrderLogInsertedInsertInput
+  updateDescription: OrderLogUpdateDescriptionInsertInput
+}
+
+type Mutation {
+  deleteManyAuthors(query: AuthorQueryInput): DeleteManyPayload
+  deleteManyBooks(query: BookQueryInput): DeleteManyPayload
+  deleteManyCategories(query: CategoryQueryInput): DeleteManyPayload
+  deleteManyCharacters(query: CharacterQueryInput): DeleteManyPayload
+  deleteManyCountries(query: CountryQueryInput): DeleteManyPayload
+  deleteManyCustomers(query: CustomerQueryInput): DeleteManyPayload
+  deleteManyFormats(query: FormatQueryInput): DeleteManyPayload
+  deleteManyGenres(query: GenreQueryInput): DeleteManyPayload
+  deleteManyItems(query: ItemQueryInput): DeleteManyPayload
+  deleteManyLanguages(query: LanguageQueryInput): DeleteManyPayload
+  deleteManyOrderLogs(query: OrderLogQueryInput): DeleteManyPayload
+  deleteManyOrders(query: OrderQueryInput): DeleteManyPayload
+  deleteManyPublishers(query: PublisherQueryInput): DeleteManyPayload
+  deleteOneAuthor(query: AuthorQueryInput!): Author
+  deleteOneBook(query: BookQueryInput!): Book
+  deleteOneCategory(query: CategoryQueryInput!): Category
+  deleteOneCharacter(query: CharacterQueryInput!): Character
+  deleteOneCountry(query: CountryQueryInput!): Country
+  deleteOneCustomer(query: CustomerQueryInput!): Customer
+  deleteOneFormat(query: FormatQueryInput!): Format
+  deleteOneGenre(query: GenreQueryInput!): Genre
+  deleteOneItem(query: ItemQueryInput!): Item
+  deleteOneLanguage(query: LanguageQueryInput!): Language
+  deleteOneOrder(query: OrderQueryInput!): Order
+  deleteOneOrderLog(query: OrderLogQueryInput!): OrderLog
+  deleteOnePublisher(query: PublisherQueryInput!): Publisher
+  insertManyAuthors(data: [AuthorInsertInput!]!): InsertManyPayload
+  insertManyBooks(data: [BookInsertInput!]!): InsertManyPayload
+  insertManyCategories(data: [CategoryInsertInput!]!): InsertManyPayload
+  insertManyCharacters(data: [CharacterInsertInput!]!): InsertManyPayload
+  insertManyCountries(data: [CountryInsertInput!]!): InsertManyPayload
+  insertManyCustomers(data: [CustomerInsertInput!]!): InsertManyPayload
+  insertManyFormats(data: [FormatInsertInput!]!): InsertManyPayload
+  insertManyGenres(data: [GenreInsertInput!]!): InsertManyPayload
+  insertManyItems(data: [ItemInsertInput!]!): InsertManyPayload
+  insertManyLanguages(data: [LanguageInsertInput!]!): InsertManyPayload
+  insertManyOrderLogs(data: [OrderLogInsertInput!]!): InsertManyPayload
+  insertManyOrders(data: [OrderInsertInput!]!): InsertManyPayload
+  insertManyPublishers(data: [PublisherInsertInput!]!): InsertManyPayload
+  insertOneAuthor(data: AuthorInsertInput!): Author
+  insertOneBook(data: BookInsertInput!): Book
+  insertOneCategory(data: CategoryInsertInput!): Category
+  insertOneCharacter(data: CharacterInsertInput!): Character
+  insertOneCountry(data: CountryInsertInput!): Country
+  insertOneCustomer(data: CustomerInsertInput!): Customer
+  insertOneFormat(data: FormatInsertInput!): Format
+  insertOneGenre(data: GenreInsertInput!): Genre
+  insertOneItem(data: ItemInsertInput!): Item
+  insertOneLanguage(data: LanguageInsertInput!): Language
+  insertOneOrder(data: OrderInsertInput!): Order
+  insertOneOrderLog(data: OrderLogInsertInput!): OrderLog
+  insertOnePublisher(data: PublisherInsertInput!): Publisher
+  replaceOneAuthor(query: AuthorQueryInput, data: AuthorInsertInput!): Author
+  replaceOneBook(query: BookQueryInput, data: BookInsertInput!): Book
+  replaceOneCategory(query: CategoryQueryInput, data: CategoryInsertInput!): Category
+  replaceOneCharacter(query: CharacterQueryInput, data: CharacterInsertInput!): Character
+  replaceOneCountry(query: CountryQueryInput, data: CountryInsertInput!): Country
+  replaceOneCustomer(query: CustomerQueryInput, data: CustomerInsertInput!): Customer
+  replaceOneFormat(query: FormatQueryInput, data: FormatInsertInput!): Format
+  replaceOneGenre(query: GenreQueryInput, data: GenreInsertInput!): Genre
+  replaceOneItem(query: ItemQueryInput, data: ItemInsertInput!): Item
+  replaceOneLanguage(query: LanguageQueryInput, data: LanguageInsertInput!): Language
+  replaceOneOrder(query: OrderQueryInput, data: OrderInsertInput!): Order
+  replaceOneOrderLog(query: OrderLogQueryInput, data: OrderLogInsertInput!): OrderLog
+  replaceOnePublisher(query: PublisherQueryInput, data: PublisherInsertInput!): Publisher
+  updateManyAuthors(query: AuthorQueryInput, set: AuthorUpdateInput!): UpdateManyPayload
+  updateManyBooks(query: BookQueryInput, set: BookUpdateInput!): UpdateManyPayload
+  updateManyCategories(query: CategoryQueryInput, set: CategoryUpdateInput!): UpdateManyPayload
+  updateManyCharacters(query: CharacterQueryInput, set: CharacterUpdateInput!): UpdateManyPayload
+  updateManyCountries(query: CountryQueryInput, set: CountryUpdateInput!): UpdateManyPayload
+  updateManyCustomers(query: CustomerQueryInput, set: CustomerUpdateInput!): UpdateManyPayload
+  updateManyFormats(query: FormatQueryInput, set: FormatUpdateInput!): UpdateManyPayload
+  updateManyGenres(query: GenreQueryInput, set: GenreUpdateInput!): UpdateManyPayload
+  updateManyItems(set: ItemUpdateInput!, query: ItemQueryInput): UpdateManyPayload
+  updateManyLanguages(set: LanguageUpdateInput!, query: LanguageQueryInput): UpdateManyPayload
+  updateManyOrderLogs(query: OrderLogQueryInput, set: OrderLogUpdateInput!): UpdateManyPayload
+  updateManyOrders(query: OrderQueryInput, set: OrderUpdateInput!): UpdateManyPayload
+  updateManyPublishers(set: PublisherUpdateInput!, query: PublisherQueryInput): UpdateManyPayload
+  updateOneAuthor(query: AuthorQueryInput, set: AuthorUpdateInput!): Author
+  updateOneBook(set: BookUpdateInput!, query: BookQueryInput): Book
+  updateOneCategory(query: CategoryQueryInput, set: CategoryUpdateInput!): Category
+  updateOneCharacter(query: CharacterQueryInput, set: CharacterUpdateInput!): Character
+  updateOneCountry(query: CountryQueryInput, set: CountryUpdateInput!): Country
+  updateOneCustomer(query: CustomerQueryInput, set: CustomerUpdateInput!): Customer
+  updateOneFormat(query: FormatQueryInput, set: FormatUpdateInput!): Format
+  updateOneGenre(query: GenreQueryInput, set: GenreUpdateInput!): Genre
+  updateOneItem(query: ItemQueryInput, set: ItemUpdateInput!): Item
+  updateOneLanguage(query: LanguageQueryInput, set: LanguageUpdateInput!): Language
+  updateOneOrder(query: OrderQueryInput, set: OrderUpdateInput!): Order
+  updateOneOrderLog(query: OrderLogQueryInput, set: OrderLogUpdateInput!): OrderLog
+  updateOnePublisher(query: PublisherQueryInput, set: PublisherUpdateInput!): Publisher
+  upsertOneAuthor(query: AuthorQueryInput, data: AuthorInsertInput!): Author
+  upsertOneBook(query: BookQueryInput, data: BookInsertInput!): Book
+  upsertOneCategory(query: CategoryQueryInput, data: CategoryInsertInput!): Category
+  upsertOneCharacter(query: CharacterQueryInput, data: CharacterInsertInput!): Character
+  upsertOneCountry(data: CountryInsertInput!, query: CountryQueryInput): Country
+  upsertOneCustomer(query: CustomerQueryInput, data: CustomerInsertInput!): Customer
+  upsertOneFormat(query: FormatQueryInput, data: FormatInsertInput!): Format
+  upsertOneGenre(query: GenreQueryInput, data: GenreInsertInput!): Genre
+  upsertOneItem(query: ItemQueryInput, data: ItemInsertInput!): Item
+  upsertOneLanguage(query: LanguageQueryInput, data: LanguageInsertInput!): Language
+  upsertOneOrder(query: OrderQueryInput, data: OrderInsertInput!): Order
+  upsertOneOrderLog(query: OrderLogQueryInput, data: OrderLogInsertInput!): OrderLog
+  upsertOnePublisher(query: PublisherQueryInput, data: PublisherInsertInput!): Publisher
+}
+
+input BookGenresRelationInput {
+  create: [GenreInsertInput]
+  link: [ObjectId]
+}
+
+input OrderLogUpdateDescriptionUpdatedFieldQueryInput {
+  description_ne: String
+  AND: [OrderLogUpdateDescriptionUpdatedFieldQueryInput!]
+  description_exists: Boolean
+  description_gt: String
+  description_in: [String]
+  description_lte: String
+  description: String
+  description_lt: String
+  description_nin: [String]
+  description_gte: String
+  OR: [OrderLogUpdateDescriptionUpdatedFieldQueryInput!]
+}
+
+input PublisherQueryInput {
+  _id_nin: [ObjectId]
+  _id_ne: ObjectId
+  picture_gte: String
+  picture: String
+  name_lt: String
+  picture_ne: String
+  picture_in: [String]
+  name_ne: String
+  _id_gt: ObjectId
+  name_nin: [String]
+  picture_gt: String
+  AND: [PublisherQueryInput!]
+  _id_gte: ObjectId
+  name_gte: String
+  name_lte: String
+  _id_in: [ObjectId]
+  picture_nin: [String]
+  OR: [PublisherQueryInput!]
+  _id_lt: ObjectId
+  name_gt: String
+  name_exists: Boolean
+  name: String
+  _id_exists: Boolean
+  name_in: [String]
+  picture_exists: Boolean
+  _id: ObjectId
+  _id_lte: ObjectId
+  picture_lt: String
+  picture_lte: String
+}
+
+input OrderLogInsertedQueryInput {
+  date_exists: Boolean
+  _id_lt: ObjectId
+  date_lt: DateTime
+  customer: ObjectId
+  date_lte: DateTime
+  _id: ObjectId
+  customer_lte: ObjectId
+  customer_in: [ObjectId]
+  date: DateTime
+  date_gt: DateTime
+  _id_gte: ObjectId
+  customer_nin: [ObjectId]
+  customer_gt: ObjectId
+  description: String
+  description_exists: Boolean
+  _id_nin: [ObjectId]
+  customer_exists: Boolean
+  description_nin: [String]
+  customer_gte: ObjectId
+  customer_ne: ObjectId
+  description_lte: String
+  _id_ne: ObjectId
+  description_ne: String
+  _id_gt: ObjectId
+  description_lt: String
+  customer_lt: ObjectId
+  _id_lte: ObjectId
+  description_gt: String
+  description_gte: String
+  AND: [OrderLogInsertedQueryInput!]
+  description_in: [String]
+  _id_in: [ObjectId]
+  date_gte: DateTime
+  OR: [OrderLogInsertedQueryInput!]
+  date_nin: [DateTime]
+  date_ne: DateTime
+  _id_exists: Boolean
+  date_in: [DateTime]
+}
+
+input BookFormatRelationInput {
+  create: FormatInsertInput
+  link: ObjectId
+}
+
+input OrderLogInsertedUpdateInput {
+  description: String
+  description_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+  customer: ObjectId
+  customer_unset: Boolean
+  date: DateTime
+  date_unset: Boolean
+}
+
+input CustomerQueryInput {
+  street_number: String
+  street_number_lt: String
+  email_lt: String
+  city_lt: String
+  postal_code_gt: String
+  _id_ne: ObjectId
+  city_in: [String]
+  last_name_exists: Boolean
+  city_gte: String
+  postal_code_ne: String
+  last_name_gt: String
+  city_gt: String
+  country: CountryQueryInput
+  _id_exists: Boolean
+  country_exists: Boolean
+  street_number_nin: [String]
+  street_name_nin: [String]
+  first_name_lte: String
+  email_exists: Boolean
+  street_name_in: [String]
+  OR: [CustomerQueryInput!]
+  street_name_gt: String
+  first_name_ne: String
+  postal_code_exists: Boolean
+  postal_code: String
+  email_gt: String
+  _id_lte: ObjectId
+  street_number_ne: String
+  AND: [CustomerQueryInput!]
+  email_ne: String
+  last_name_lte: String
+  _id_gte: ObjectId
+  street_name_lt: String
+  postal_code_in: [String]
+  email: String
+  last_name_ne: String
+  first_name: String
+  street_number_in: [String]
+  last_name_nin: [String]
+  last_name_lt: String
+  last_name_in: [String]
+  postal_code_lt: String
+  city_lte: String
+  _id_nin: [ObjectId]
+  email_in: [String]
+  street_name_lte: String
+  street_number_gt: String
+  email_gte: String
+  city_exists: Boolean
+  city_ne: String
+  city_nin: [String]
+  email_nin: [String]
+  first_name_lt: String
+  postal_code_lte: String
+  last_name_gte: String
+  first_name_gt: String
+  street_name_exists: Boolean
+  first_name_gte: String
+  city: String
+  first_name_in: [String]
+  email_lte: String
+  _id_gt: ObjectId
+  postal_code_nin: [String]
+  street_name_gte: String
+  first_name_exists: Boolean
+  street_name: String
+  last_name: String
+  street_name_ne: String
+  _id_lt: ObjectId
+  street_number_exists: Boolean
+  postal_code_gte: String
+  _id_in: [ObjectId]
+  street_number_lte: String
+  street_number_gte: String
+  _id: ObjectId
+  first_name_nin: [String]
+}
+
+input CategoryUpdateInput {
+  parentId: ObjectId
+  parentId_unset: Boolean
+  _id: Category_idRelationInput
+  _id_unset: Boolean
+  name: String
+  name_unset: Boolean
+}
+
+input BookLanguageRelationInput {
+  link: ObjectId
+  create: LanguageInsertInput
+}
+
+input OrderLogUpdateDescriptionRemovedFieldUpdateInput {
+  description: String
+  description_unset: Boolean
+}
+
+input OrderLogUpdateDescriptionUpdatedFieldUpdateInput {
+  description: String
+  description_unset: Boolean
+}
+
+input OrderInsertInput {
+  _id: ObjectId
+  customer: OrderCustomerRelationInput
+  date: DateTime
+  description: String
+  total_price: Float
+}
+
+input CountryUpdateInput {
+  _id_unset: Boolean
+  name: String
+  name_unset: Boolean
+  _id: ObjectId
+}
+
+input BookInsertInput {
+  units: Int
+  dimensions: String
+  authors: BookAuthorsRelationInput
+  _id: ObjectId
+  title: String
+  publishers: BookPublishersRelationInput
+  pages: Int
+  categories: BookCategoriesRelationInput
+  description: String
+  price: Float
+  isbn_13: String
+  isbn_10: String
+  genres: BookGenresRelationInput
+  language: BookLanguageRelationInput
+  format: BookFormatRelationInput
+}
+
+input AuthorUpdateInput {
+  _id: ObjectId
+  _id_unset: Boolean
+  name: String
+  name_unset: Boolean
+  picture: String
+  picture_unset: Boolean
+}
+
+input GenreQueryInput {
+  _id_in: [ObjectId]
+  _id_gt: ObjectId
+  name_gte: String
+  _id: ObjectId
+  name_lte: String
+  _id_nin: [ObjectId]
+  name_exists: Boolean
+  _id_lte: ObjectId
+  AND: [GenreQueryInput!]
+  name_in: [String]
+  name_ne: String
+  _id_lt: ObjectId
+  _id_exists: Boolean
+  _id_ne: ObjectId
+  name_nin: [String]
+  _id_gte: ObjectId
+  name: String
+  name_gt: String
+  OR: [GenreQueryInput!]
+  name_lt: String
+}
+
+type OrderLogInserted {
+  _id: ObjectId
+  customer: ObjectId
+  date: DateTime
+  description: String
+}
+
+type Order {
+  _id: ObjectId
+  customer: Customer
+  date: DateTime
+  description: String
+  total_price: Float
+}
+
+input BookAuthorsRelationInput {
+  create: [AuthorInsertInput]
+  link: [ObjectId]
+}
+
+input CharacterUpdateInput {
+  category: CharacterCategoryRelationInput
+  category_unset: Boolean
+  name: String
+  name_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+}
+
+enum CustomerSortByInput {
+  LAST_NAME_ASC
+  POSTAL_CODE_DESC
+  STREET_NUMBER_ASC
+  CITY_ASC
+  COUNTRY_DESC
+  CITY_DESC
+  COUNTRY_ASC
+  FIRST_NAME_DESC
+  STREET_NUMBER_DESC
+  _ID_ASC
+  _ID_DESC
+  STREET_NAME_DESC
+  EMAIL_DESC
+  FIRST_NAME_ASC
+  POSTAL_CODE_ASC
+  STREET_NAME_ASC
+  EMAIL_ASC
+  LAST_NAME_DESC
+}

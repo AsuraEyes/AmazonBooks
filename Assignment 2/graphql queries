@@ -1,0 +1,115 @@
+a. Data of a book including authors and categories
+{
+  book(query: {title: "Harry Potter"}) {
+    _id
+    isbn_10
+    isbn_13
+    title
+    description
+    pages
+    dimensions
+    price
+    units
+    language {
+      name
+    }
+    format {
+      name
+    }
+    publishers {
+      name
+    }
+    genres {
+      name
+    }
+    authors {
+      name
+    }
+    categories {
+      name
+    }
+  }
+}
+
+b. All books by an author
+{
+  books(query: {authors: {name: "Elly Griffiths"}}) {
+    _id
+    isbn_10
+    isbn_13
+    title
+    description
+    pages
+    dimensions
+    price
+    units
+    language {
+      name
+    }
+    format {
+      name
+    }
+    publishers {
+      name
+    }
+    genres {
+      name
+    }
+    authors {
+      name
+    }
+    categories {
+      name
+    }
+  }
+}
+
+c. The details of an order
+{
+  order {
+    _id
+    date
+    description
+    items{
+      book {
+        _id
+        description
+        dimensions
+        isbn_10
+        isbn_13
+        pages
+        price
+        title
+        units
+        language {
+          _id
+          name
+        }
+        format {
+          _id
+          name
+        }
+        publishers {
+          _id
+          name
+          picture
+        }
+        genres {
+          _id
+          name
+        }
+        authors {
+          _id
+          name
+          picture
+        }
+        categories {
+          _id
+          name
+        }
+      }
+      quantity
+      unit_price
+    }
+  }
+}

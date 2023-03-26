@@ -221,9 +221,6 @@ db.createCollection("items", {
             bsonType: "object",
             required: ["book", "quantity", "unit_price"],
             properties: {
-                order: {
-                    bsonType: "objectId"
-                },
                 book: {
                     bsonType: "objectId"
                 },
@@ -231,9 +228,6 @@ db.createCollection("items", {
                     bsonType: "int"
                 },
                 unit_price: {
-                    bsonType: "double"
-                },
-                total_price: {
                     bsonType: "double"
                 }
             }
@@ -277,25 +271,9 @@ db.createCollection("orders", {
                     bsonType: "array",
                     uniqueItems: true,
                     items: {
-                        bsonType: "object",
-                        required: ["book", "quantity", "unit_price"],
-                        properties: {
-                            order: {
-                                bsonType: "objectId"
-                            },
-                            book: {
-                                bsonType: "objectId"
-                            },
-                            quantity: {
-                                bsonType: "int"
-                            },
-                            unit_price: {
-                                bsonType: "double"
-                            }
-                        }
+                        bsonType: "objectId"
                     }
                 }
-
             }
         }
     }
